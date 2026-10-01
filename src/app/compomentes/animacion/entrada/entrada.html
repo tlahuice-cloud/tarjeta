@@ -1,0 +1,133 @@
+<section
+  class="entrada"
+  [class.entrada-abierta]="sobreAbierto()"
+>
+
+  <!-- ============================================= -->
+  <!-- CONTENEDOR DEL SOBRE                         -->
+  <!-- ============================================= -->
+
+  <div class="sobre">
+
+    <!-- =========================================== -->
+    <!-- PAPEL / INVITACIÓN INTERIOR                -->
+    <!-- =========================================== -->
+
+    <div class="papel">
+
+      <div class="papel-contenido">
+
+        <span class="papel-adorno">
+          ✦
+        </span>
+
+        <span class="papel-texto">
+          Una invitación especial
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================================== -->
+    <!-- PARTE TRASERA DEL SOBRE                    -->
+    <!-- =========================================== -->
+
+    <div class="sobre-cuerpo"></div>
+
+
+    <!-- =========================================== -->
+    <!-- SOLAPA SUPERIOR                            -->
+    <!-- =========================================== -->
+
+    <div class="sobre-solapa"></div>
+
+
+    <!-- =========================================== -->
+    <!-- SOLAPA IZQUIERDA                           -->
+    <!-- =========================================== -->
+
+    <div class="sobre-lateral sobre-lateral-izquierda"></div>
+
+
+    <!-- =========================================== -->
+    <!-- SOLAPA DERECHA                             -->
+    <!-- =========================================== -->
+
+    <div class="sobre-lateral sobre-lateral-derecha"></div>
+
+
+    <!-- =========================================== -->
+    <!-- SOLAPA INFERIOR                            -->
+    <!-- =========================================== -->
+
+    <div class="sobre-solapa-inferior"></div>
+
+
+    <!-- =========================================== -->
+    <!-- SELLO                                      -->
+    <!-- =========================================== -->
+
+    <button
+      type="button"
+      class="sello"
+      [class.sello-presionado]="selloPresionado()"
+      [class.sello-oculto]="sobreAbierto()"
+      (click)="abrirSobre()"
+      aria-label="Abrir invitación"
+    >
+
+      <span class="sello-borde"></span>
+
+      <span class="sello-simbolo">
+        ✦
+      </span>
+
+    </button>
+
+  </div>
+
+
+  <!-- ============================================= -->
+  <!-- INDICACIÓN                                   -->
+  <!-- ============================================= -->
+
+  @if (!sobreAbierto()) {
+
+    <div class="indicacion">
+
+      <span class="indicacion-icono">
+        ✦
+      </span>
+
+      <span>
+        Toca el sello para abrir
+      </span>
+
+    </div>
+
+  }
+
+
+  <!-- ============================================= -->
+  <!-- MENSAJE DESPUÉS DE ABRIR                    -->
+  <!-- ============================================= -->
+
+  @if (sobreAbierto()) {
+
+    <div class="mensaje-apertura">
+
+      <span>✦</span>
+
+      <span>
+        Descubriendo tu invitación
+      </span>
+
+      <span>✦</span>
+
+    </div>
+
+  }
+
+</section>

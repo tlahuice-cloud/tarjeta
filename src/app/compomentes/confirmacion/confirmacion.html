@@ -1,0 +1,66 @@
+<p>confirmacion works!</p>
+<section
+  class="confirmacion"
+  [class.oculta]="!tieneWhatsApp()"
+>
+
+  <div class="confirmacion-contenido">
+
+    <!-- Icono -->
+    <div
+      class="confirmacion-icono"
+      aria-hidden="true"
+    >
+      💬
+    </div>
+
+
+    <!-- Texto -->
+    <div class="confirmacion-texto">
+
+      <span class="confirmacion-etiqueta">
+        Confirmación de asistencia
+      </span>
+
+      <h3>
+        ¿Nos acompañas?
+      </h3>
+
+      <p>
+        Confirma tu asistencia por WhatsApp.
+      </p>
+
+    </div>
+
+
+    <!-- Botón -->
+    <button
+      type="button"
+      class="btn-whatsapp"
+      (click)="confirmarPorWhatsApp()"
+      aria-label="Confirmar asistencia por WhatsApp"
+    >
+
+      <span
+        class="whatsapp-icono"
+        aria-hidden="true"
+      >
+        💬
+      </span>
+
+      <span>
+        Confirmar por WhatsApp
+      </span>
+
+      <span
+        class="flecha"
+        aria-hidden="true"
+      >
+        →
+      </span>
+
+    </button>
+
+  </div>
+
+</section>

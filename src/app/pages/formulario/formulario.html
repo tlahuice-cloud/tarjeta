@@ -1,0 +1,656 @@
+<div class="formulario-container">
+
+  <!-- =====================================================
+       ENCABEZADO
+       ===================================================== -->
+
+  <div class="form-header">
+
+    <span class="form-badge">
+      ✨ Crea tu invitación
+    </span>
+
+    <h2>
+      Configurador de Tarjeta / Invitación
+    </h2>
+
+    <p>
+      Selecciona tu evento y personaliza la información
+      que aparecerá en tu invitación.
+    </p>
+
+  </div>
+
+
+  <form
+    [formGroup]="formularioTarjeta"
+    class="form-grid"
+  >
+
+
+    <!-- =====================================================
+         TIPO DE EVENTO
+         ===================================================== -->
+
+    <div class="form-group full-width">
+
+      <label for="tipoEvento">
+        Tipo de Evento
+      </label>
+
+      <select
+        id="tipoEvento"
+        formControlName="tipoEvento"
+        (change)="alCambiarTipoEvento($event)"
+      >
+
+        <option value="boda">
+          💍 Boda
+        </option>
+
+        <option value="xv_anos">
+          👑 XV Años
+        </option>
+
+        <option value="cumpleanos">
+          🎂 Cumpleaños
+        </option>
+
+        <option value="bautizo">
+          👶 Bautizo
+        </option>
+
+        <option value="primera_comunion">
+          ⛪ Primera Comunión
+        </option>
+
+        <option value="confirmacion">
+          ✝️ Confirmación
+        </option>
+
+        <option value="graduacion">
+          🎓 Graduación
+        </option>
+
+        <option value="aniversario">
+          💕 Aniversario
+        </option>
+
+        <option value="baby_shower">
+          🍼 Baby Shower
+        </option>
+
+        <option value="revelacion_genero">
+          💙💗 Revelación de Género
+        </option>
+
+        <option value="despedida">
+          💐 Despedida de Soltera/o
+        </option>
+
+        <option value="presentacion">
+          🎉 Presentación
+        </option>
+
+        <option value="otro">
+          🎈 Otro Evento
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- =====================================================
+         FRASE DEL EVENTO
+         ===================================================== -->
+
+    <div class="evento-frase full-width campo-dinamico">
+
+      @switch (tipoEventoSeleccionado()) {
+
+        @case ('boda') {
+          <span>💍</span>
+          <p>
+            Dos historias se unen para comenzar
+            una nueva vida juntos.
+          </p>
+        }
+
+        @case ('xv_anos') {
+          <span>👑</span>
+          <p>
+            Una hermosa etapa comienza y queremos
+            compartirla contigo.
+          </p>
+        }
+
+        @case ('cumpleanos') {
+          <span>🎂</span>
+          <p>
+            Celebramos un año más de vida.
+          </p>
+        }
+
+        @case ('bautizo') {
+          <span>👶</span>
+          <p>
+            Un día lleno de amor, alegría y bendiciones.
+          </p>
+        }
+
+        @case ('primera_comunion') {
+          <span>⛪</span>
+          <p>
+            Un momento especial de fe que queremos
+            compartir contigo.
+          </p>
+        }
+
+        @case ('confirmacion') {
+          <span>🕊️</span>
+          <p>
+            Celebramos un momento especial de fe
+            y crecimiento espiritual.
+          </p>
+        }
+
+        @case ('graduacion') {
+          <span>🎓</span>
+          <p>
+            Un sueño cumplido y una nueva etapa
+            por comenzar.
+          </p>
+        }
+
+        @case ('aniversario') {
+          <span>💕</span>
+          <p>
+            Celebramos una historia llena de
+            momentos inolvidables.
+          </p>
+        }
+
+        @case ('baby_shower') {
+          <span>🍼</span>
+          <p>
+            Una nueva historia está por comenzar.
+          </p>
+        }
+
+        @case ('revelacion_genero') {
+          <span>💙💗</span>
+          <p>
+            Una gran sorpresa está por descubrirse.
+          </p>
+        }
+
+        @case ('despedida') {
+          <span>🥂</span>
+          <p>
+            Antes de comenzar una nueva aventura,
+            tenemos algo que celebrar.
+          </p>
+        }
+
+        @case ('presentacion') {
+          <span>🎉</span>
+          <p>
+            Queremos compartir contigo
+            este momento tan especial.
+          </p>
+        }
+
+        @default {
+          <span>✨</span>
+          <p>
+            Queremos compartir contigo
+            un momento muy especial.
+          </p>
+        }
+
+      }
+
+    </div>
+
+
+    <!-- =====================================================
+         NOMBRE PRINCIPAL
+         ===================================================== -->
+
+    <div class="form-group campo-dinamico">
+
+      <label for="nombreFestejado">
+
+        @switch (tipoEventoSeleccionado()) {
+
+          @case ('boda') {
+            Nombre del Novio / Novia (1)
+          }
+
+          @case ('xv_anos') {
+            Nombre de la Quinceañera / Quinceañero
+          }
+
+          @case ('cumpleanos') {
+            Nombre del Cumpleañero / Cumpleañera
+          }
+
+          @case ('bautizo') {
+            Nombre del Bautizado / Bautizada
+          }
+
+          @case ('primera_comunion') {
+            Nombre del Niño / Niña
+          }
+
+          @case ('confirmacion') {
+            Nombre del Confirmado / Confirmada
+          }
+
+          @case ('graduacion') {
+            Nombre del Graduado / Graduada
+          }
+
+          @case ('aniversario') {
+            Nombre de la Pareja (1)
+          }
+
+          @case ('baby_shower') {
+            Nombre de la Futura Mamá
+          }
+
+          @case ('revelacion_genero') {
+            Nombre de los Futuros Padres
+          }
+
+          @case ('despedida') {
+            Nombre de la Festejada / Festejado
+          }
+
+          @default {
+            Nombre del Festejado / Festejada
+          }
+
+        }
+
+      </label>
+
+      <input
+        id="nombreFestejado"
+        type="text"
+        formControlName="nombreFestejado"
+        placeholder="Escribe el nombre"
+      />
+
+    </div>
+
+
+    <!-- =====================================================
+         SEGUNDO NOMBRE
+         Solo Boda y Aniversario
+         ===================================================== -->
+
+    @if (
+      tipoEventoSeleccionado() === 'boda' ||
+      tipoEventoSeleccionado() === 'aniversario'
+    ) {
+
+      <div class="form-group campo-dinamico">
+
+        <label for="nombrePareja">
+
+          @if (tipoEventoSeleccionado() === 'boda') {
+            Nombre del Novio / Novia (2)
+          } @else {
+            Nombre de la Pareja (2)
+          }
+
+        </label>
+
+        <input
+          id="nombrePareja"
+          type="text"
+          formControlName="nombrePareja"
+          placeholder="Escribe el nombre"
+        />
+
+      </div>
+
+    }
+
+
+    <!-- =====================================================
+         PADRES
+         ===================================================== -->
+
+    @if (
+      tipoEventoSeleccionado() === 'boda' ||
+      tipoEventoSeleccionado() === 'xv_anos' ||
+      tipoEventoSeleccionado() === 'bautizo' ||
+      tipoEventoSeleccionado() === 'primera_comunion' ||
+      tipoEventoSeleccionado() === 'confirmacion'
+    ) {
+
+      <div class="form-group campo-dinamico">
+
+        <label for="papas">
+
+          @switch (tipoEventoSeleccionado()) {
+
+            @case ('boda') {
+              Padres de los Novios
+            }
+
+            @case ('xv_anos') {
+              Padres de la Quinceañera / Quinceañero
+            }
+
+            @case ('bautizo') {
+              Padres del Bautizado / Bautizada
+            }
+
+            @case ('primera_comunion') {
+              Padres del Niño / Niña
+            }
+
+            @case ('confirmacion') {
+              Padres del Confirmado / Confirmada
+            }
+
+          }
+
+        </label>
+
+        <input
+          id="papas"
+          type="text"
+          formControlName="papas"
+          placeholder="Ej. Roberto y Elena"
+        />
+
+      </div>
+
+    }
+
+
+    <!-- =====================================================
+         PADRINOS
+         ===================================================== -->
+
+    @if (
+      tipoEventoSeleccionado() === 'xv_anos' ||
+      tipoEventoSeleccionado() === 'bautizo' ||
+      tipoEventoSeleccionado() === 'primera_comunion' ||
+      tipoEventoSeleccionado() === 'confirmacion'
+    ) {
+
+      <div class="form-group campo-dinamico">
+
+        <label for="padrinos">
+
+          @switch (tipoEventoSeleccionado()) {
+
+            @case ('bautizo') {
+              Padrinos de Bautizo
+            }
+
+            @case ('primera_comunion') {
+              Padrinos de Primera Comunión
+            }
+
+            @case ('confirmacion') {
+              Padrinos de Confirmación
+            }
+
+            @default {
+              Padrinos
+            }
+
+          }
+
+        </label>
+
+        <input
+          id="padrinos"
+          type="text"
+          formControlName="padrinos"
+          placeholder="Ej. Luis y Martha"
+        />
+
+      </div>
+
+    }
+
+
+    <!-- =====================================================
+         FECHA
+         ===================================================== -->
+
+    <div class="form-group">
+
+      <label for="fecha">
+        Fecha del Evento
+      </label>
+
+      <input
+        id="fecha"
+        type="date"
+        formControlName="fecha"
+      />
+
+    </div>
+
+
+    <!-- =====================================================
+         HORA
+         ===================================================== -->
+
+    <div class="form-group">
+
+      <label for="hora">
+        Hora
+      </label>
+
+      <input
+        id="hora"
+        type="time"
+        formControlName="hora"
+      />
+
+    </div>
+
+
+    <!-- =====================================================
+         LUGAR
+         ===================================================== -->
+
+    <div class="form-group">
+
+      <label for="nombreLugar">
+        Lugar / Salón
+      </label>
+
+      <input
+        id="nombreLugar"
+        type="text"
+        formControlName="nombreLugar"
+        placeholder="Ej. Jardín Las Flores"
+      />
+
+    </div>
+
+
+    <!-- =====================================================
+         DIRECCIÓN
+         ===================================================== -->
+
+    <div class="form-group">
+
+      <label for="direccion">
+        Dirección
+      </label>
+
+      <input
+        id="direccion"
+        type="text"
+        formControlName="direccion"
+        placeholder="Calle, número, colonia..."
+      />
+
+    </div>
+
+
+    <!-- =====================================================
+         GOOGLE MAPS
+         ===================================================== -->
+
+    <div class="form-group full-width">
+
+      <label for="linkUbicacionMaps">
+        Link de Google Maps
+      </label>
+
+      <input
+        id="linkUbicacionMaps"
+        type="url"
+        formControlName="linkUbicacionMaps"
+        placeholder="https://maps.app.goo.gl/..."
+      />
+
+    </div>
+
+
+    <!-- =====================================================
+         MENSAJE
+         ===================================================== -->
+
+    <div class="form-group full-width">
+
+      <label for="mensajeBienvenida">
+        Mensaje de la Invitación
+      </label>
+
+      <textarea
+        id="mensajeBienvenida"
+        formControlName="mensajeBienvenida"
+        rows="4"
+        placeholder="Escribe un mensaje especial..."
+      ></textarea>
+
+    </div>
+
+
+    <!-- =====================================================
+         CÓDIGO DE VESTIMENTA
+         ===================================================== -->
+
+    @if (
+      tipoEventoSeleccionado() === 'boda' ||
+      tipoEventoSeleccionado() === 'xv_anos' ||
+      tipoEventoSeleccionado() === 'graduacion' ||
+      tipoEventoSeleccionado() === 'aniversario' ||
+      tipoEventoSeleccionado() === 'despedida'
+    ) {
+
+      <div class="form-group campo-dinamico">
+
+        <label for="codigoVestimenta">
+          Código de Vestimenta
+        </label>
+
+        <input
+          id="codigoVestimenta"
+          type="text"
+          formControlName="codigoVestimenta"
+          placeholder="Ej. Formal / Casual / Etiqueta"
+        />
+
+      </div>
+
+    }
+
+
+    <!-- =====================================================
+         WHATSAPP
+         ===================================================== -->
+
+    @if (
+      tipoEventoSeleccionado() === 'boda' ||
+      tipoEventoSeleccionado() === 'xv_anos' ||
+      tipoEventoSeleccionado() === 'cumpleanos' ||
+      tipoEventoSeleccionado() === 'aniversario' ||
+      tipoEventoSeleccionado() === 'baby_shower' ||
+      tipoEventoSeleccionado() === 'despedida'
+    ) {
+
+      <div class="form-group campo-dinamico">
+
+        <label for="numeroWhatsAppConfirmacion">
+          WhatsApp de Confirmación
+        </label>
+
+        <input
+          id="numeroWhatsAppConfirmacion"
+          type="tel"
+          formControlName="numeroWhatsAppConfirmacion"
+          placeholder="Ej. 2221234567"
+        />
+
+      </div>
+
+    }
+
+
+    <!-- =====================================================
+         DISEÑOS
+         ===================================================== -->
+
+    <div class="form-actions full-width">
+
+      <span class="step-label">
+        Último paso
+      </span>
+
+      <h3>
+        Selecciona el diseño de tu invitación
+      </h3>
+
+      <div class="btn-group">
+
+        <button
+          type="button"
+          class="btn btn-1"
+          (click)="guardarYGenerar('tarjeta1')"
+        >
+          <span>✨</span>
+          Diseño 1
+        </button>
+
+
+        <button
+          type="button"
+          class="btn btn-2"
+          (click)="guardarYGenerar('tarjeta2')"
+        >
+          <span>💎</span>
+          Diseño 2
+        </button>
+
+
+        <button
+          type="button"
+          class="btn btn-3"
+          (click)="guardarYGenerar('tarjeta3')"
+        >
+          <span>👑</span>
+          Diseño 3
+        </button>
+
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

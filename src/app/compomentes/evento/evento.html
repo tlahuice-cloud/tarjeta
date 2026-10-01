@@ -1,0 +1,69 @@
+<section
+  class="evento"
+  [attr.data-tipo]="datos().tipoEvento"
+>
+
+  <!-- ======================================================
+       ENCABEZADO DEL EVENTO
+       ====================================================== -->
+
+  <div class="evento-tipo">
+
+    <span
+      class="evento-icono"
+      aria-hidden="true"
+    >
+      {{ iconoEvento() }}
+    </span>
+
+    <span class="evento-nombre">
+      {{ nombreTipoEvento() }}
+    </span>
+
+  </div>
+
+
+  <!-- ======================================================
+       NOMBRES
+       ====================================================== -->
+
+  <div class="evento-nombres">
+
+    @for (
+      nombre of nombresEvento();
+      track $index
+    ) {
+
+      @if (nombre.trim() !== '') {
+
+        <span
+          class="evento-nombre-persona"
+        >
+          {{ nombre }}
+        </span>
+
+      }
+
+    }
+
+  </div>
+
+
+  <!-- ======================================================
+       SEPARADOR PARA DOS PERSONAS
+       ====================================================== -->
+
+  @if (nombresEvento().length > 1) {
+
+    <div
+      class="evento-separador"
+      aria-hidden="true"
+    >
+      <span></span>
+      <b>&</b>
+      <span></span>
+    </div>
+
+  }
+
+</section>

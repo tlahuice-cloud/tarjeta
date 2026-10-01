@@ -1,0 +1,708 @@
+// ==================================================
+// INVITACIÓN — ANIMACIÓN TEMÁTICA
+// ==================================================
+
+.invitacion {
+
+  // ------------------------------------------------
+  // VARIABLES
+  // ------------------------------------------------
+
+  --invitacion-color: #8f3f4a;
+
+  --invitacion-acento: #c9a45c;
+
+  --invitacion-texto: #4c4038;
+
+  --invitacion-fondo: transparent;
+
+
+  position: relative;
+
+  width: 100%;
+
+  min-height: 280px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 50px 25px;
+
+  overflow: hidden;
+
+  color: var(--invitacion-texto);
+
+  text-align: center;
+
+  animation:
+    entradaInvitacion 1.2s
+    cubic-bezier(.22, .61, .36, 1)
+    both;
+}
+
+
+// ==================================================
+// DECORACIONES
+// ==================================================
+
+.decoracion {
+
+  width: min(80%, 380px);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  opacity: 0;
+
+  animation:
+    aparecerDecoracion 1s ease
+    0.35s
+    forwards;
+}
+
+
+.decoracion span {
+
+  width: 70px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      var(--invitacion-acento)
+    );
+}
+
+
+.decoracion span:last-child {
+
+  background:
+    linear-gradient(
+      to left,
+      transparent,
+      var(--invitacion-acento)
+    );
+}
+
+
+.decoracion b {
+
+  color: var(--invitacion-acento);
+
+  font-size: 1.1rem;
+
+  font-weight: 400;
+}
+
+
+// ==================================================
+// ELEMENTOS DEL EVENTO
+// ==================================================
+
+.elementos-evento {
+
+  position: relative;
+
+  width: 100%;
+
+  min-height: 75px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 25px;
+
+  margin: 15px 0;
+
+  pointer-events: none;
+}
+
+
+.elemento-evento {
+
+  display: inline-block;
+
+  font-size: 3.2rem;
+
+  line-height: 1;
+
+  opacity: 0;
+
+  filter:
+    drop-shadow(
+      0 8px 10px rgba(0, 0, 0, 0.12)
+    );
+
+  animation:
+    aparecerElemento 1s
+    cubic-bezier(.22, .61, .36, 1)
+    0.25s
+    forwards;
+}
+
+
+// ==================================================
+// CUANDO EXISTEN DOS ELEMENTOS
+// ==================================================
+
+.elemento-izquierdo {
+
+  animation-name:
+    aparecerAnilloIzquierdo;
+
+  animation-delay:
+    0.35s;
+}
+
+
+.elemento-derecho {
+
+  animation-name:
+    aparecerAnilloDerecho;
+
+  animation-delay:
+    0.5s;
+}
+
+
+// ==================================================
+// CONTENIDO
+// ==================================================
+
+.invitacion-contenido {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 10px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+// ==================================================
+// TEXTO PEQUEÑO
+// ==================================================
+
+.texto-pequeno {
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 0.85rem;
+
+  font-style: italic;
+
+  letter-spacing: 0.08em;
+
+  opacity: 0;
+
+  animation:
+    aparecerTexto 0.8s ease
+    0.6s
+    forwards;
+}
+
+
+// ==================================================
+// TÍTULO
+// ==================================================
+
+.titulo-invitacion {
+
+  margin: 0;
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: clamp(
+    2rem,
+    7vw,
+    3.4rem
+  );
+
+  font-weight: 400;
+
+  letter-spacing: 0.16em;
+
+  color: var(--invitacion-color);
+
+  opacity: 0;
+
+  transform:
+    translateY(15px);
+
+  animation:
+    revelarTitulo 1s
+    cubic-bezier(.22, .61, .36, 1)
+    0.7s
+    forwards;
+}
+
+
+// ==================================================
+// LÍNEA DECORATIVA
+// ==================================================
+
+.linea-decorativa {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  opacity: 0;
+
+  animation:
+    aparecerTexto 0.8s ease
+    1s
+    forwards;
+}
+
+
+.linea-decorativa span {
+
+  width: 45px;
+
+  height: 1px;
+
+  background:
+    var(--invitacion-acento);
+}
+
+
+.linea-decorativa b {
+
+  color: var(--invitacion-acento);
+
+  font-size: 0.8rem;
+
+  font-weight: 400;
+}
+
+
+// ==================================================
+// TIPO DE EVENTO
+// ==================================================
+
+.tipo-evento {
+
+  margin-top: 5px;
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 1rem;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+
+  color: var(--invitacion-texto);
+
+  opacity: 0;
+
+  animation:
+    aparecerTexto 0.8s ease
+    1.2s
+    forwards;
+}
+
+
+// ==================================================
+// ANIMACIONES GENERALES
+// ==================================================
+
+@keyframes entradaInvitacion {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(30px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+@keyframes aparecerDecoracion {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      scaleX(0.5);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      scaleX(1);
+  }
+}
+
+
+@keyframes aparecerElemento {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      scale(0.5)
+      translateY(20px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      scale(1)
+      translateY(0);
+  }
+}
+
+
+@keyframes aparecerAnilloIzquierdo {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateX(30px)
+      rotate(-15deg)
+      scale(0.5);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateX(0)
+      rotate(0)
+      scale(1);
+  }
+}
+
+
+@keyframes aparecerAnilloDerecho {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateX(-30px)
+      rotate(15deg)
+      scale(0.5);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateX(0)
+      rotate(0)
+      scale(1);
+  }
+}
+
+
+@keyframes aparecerTexto {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(12px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+@keyframes revelarTitulo {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(15px)
+      scale(0.96);
+
+    letter-spacing: 0.3em;
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    letter-spacing: 0.16em;
+  }
+}
+
+
+// ==================================================
+// BODA
+// ==================================================
+
+.invitacion[data-tipo='boda'] {
+
+  --invitacion-color: #8f3f4a;
+
+  --invitacion-acento: #c9a45c;
+}
+
+
+// ==================================================
+// XV AÑOS
+// ==================================================
+
+.invitacion[data-tipo='xv_anos'] {
+
+  --invitacion-color: #80518c;
+
+  --invitacion-acento: #c6a45c;
+}
+
+
+// ==================================================
+// CUMPLEAÑOS
+// ==================================================
+
+.invitacion[data-tipo='cumpleanos'] {
+
+  --invitacion-color: #b95f76;
+
+  --invitacion-acento: #e0a34f;
+}
+
+
+// ==================================================
+// BAUTIZO
+// ==================================================
+
+.invitacion[data-tipo='bautizo'] {
+
+  --invitacion-color: #628da3;
+
+  --invitacion-acento: #b7a06c;
+}
+
+
+// ==================================================
+// PRIMERA COMUNIÓN
+// ==================================================
+
+.invitacion[data-tipo='primera_comunion'] {
+
+  --invitacion-color: #77715f;
+
+  --invitacion-acento: #b49a61;
+}
+
+
+// ==================================================
+// CONFIRMACIÓN
+// ==================================================
+
+.invitacion[data-tipo='confirmacion'] {
+
+  --invitacion-color: #687c91;
+
+  --invitacion-acento: #b69b62;
+}
+
+
+// ==================================================
+// GRADUACIÓN
+// ==================================================
+
+.invitacion[data-tipo='graduacion'] {
+
+  --invitacion-color: #394b69;
+
+  --invitacion-acento: #b89b52;
+}
+
+
+// ==================================================
+// ANIVERSARIO
+// ==================================================
+
+.invitacion[data-tipo='aniversario'] {
+
+  --invitacion-color: #a05262;
+
+  --invitacion-acento: #c7a05c;
+}
+
+
+// ==================================================
+// BABY SHOWER
+// ==================================================
+
+.invitacion[data-tipo='baby_shower'] {
+
+  --invitacion-color: #6c91a5;
+
+  --invitacion-acento: #c5a76b;
+}
+
+
+// ==================================================
+// REVELACIÓN DE GÉNERO
+// ==================================================
+
+.invitacion[data-tipo='revelacion_genero'] {
+
+  --invitacion-color: #6d7894;
+
+  --invitacion-acento: #c69baf;
+}
+
+
+// ==================================================
+// DESPEDIDA
+// ==================================================
+
+.invitacion[data-tipo='despedida'] {
+
+  --invitacion-color: #8d5d75;
+
+  --invitacion-acento: #c8a064;
+}
+
+
+// ==================================================
+// PRESENTACIÓN
+// ==================================================
+
+.invitacion[data-tipo='presentacion'] {
+
+  --invitacion-color: #8b5d37;
+
+  --invitacion-acento: #c8a05b;
+}
+
+
+// ==================================================
+// OTRO
+// ==================================================
+
+.invitacion[data-tipo='otro'] {
+
+  --invitacion-color: #66556f;
+
+  --invitacion-acento: #b9a06a;
+}
+
+
+// ==================================================
+// RESPONSIVE
+// ==================================================
+
+@media (max-width: 600px) {
+
+  .invitacion {
+
+    min-height: 240px;
+
+    padding: 40px 15px;
+  }
+
+
+  .elemento-evento {
+
+    font-size: 2.7rem;
+  }
+
+
+  .texto-pequeno {
+
+    font-size: 0.78rem;
+  }
+
+
+  .tipo-evento {
+
+    font-size: 0.85rem;
+  }
+}
+
+
+// ==================================================
+// REDUCIR MOVIMIENTO
+// ==================================================
+
+@media (prefers-reduced-motion: reduce) {
+
+  .invitacion,
+  .decoracion,
+  .elemento-evento,
+  .texto-pequeno,
+  .titulo-invitacion,
+  .linea-decorativa,
+  .tipo-evento {
+
+    animation: none;
+
+    opacity: 1;
+
+    transform: none;
+  }
+}

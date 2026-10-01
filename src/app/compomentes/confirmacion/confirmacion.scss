@@ -1,0 +1,291 @@
+// ==================================================
+// CONFIRMACIÓN
+// ==================================================
+
+.confirmacion {
+
+  --confirmacion-color: #25d366;
+  --confirmacion-color-hover: #1ebe5d;
+  --confirmacion-texto: #333;
+  --confirmacion-suave: #666;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 30px 20px;
+
+  animation: entradaConfirmacion 0.8s ease both;
+}
+
+
+// ==================================================
+// OCULTAR SI NO EXISTE WHATSAPP
+// ==================================================
+
+.confirmacion.oculta {
+  display: none;
+}
+
+
+// ==================================================
+// CONTENIDO
+// ==================================================
+
+.confirmacion-contenido {
+
+  width: 100%;
+  max-width: 500px;
+
+  padding: 30px;
+
+  text-align: center;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08);
+
+  backdrop-filter: blur(10px);
+}
+
+
+// ==================================================
+// ICONO
+// ==================================================
+
+.confirmacion-icono {
+
+  width: 65px;
+  height: 65px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(37, 211, 102, 0.12);
+
+  font-size: 30px;
+
+  animation: pulsoWhatsApp 2.2s ease-in-out infinite;
+}
+
+
+// ==================================================
+// TEXTO
+// ==================================================
+
+.confirmacion-etiqueta {
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+
+  color: var(--confirmacion-color);
+}
+
+
+.confirmacion-texto h3 {
+
+  margin: 0 0 10px;
+
+  font-size: 1.7rem;
+
+  font-weight: 700;
+
+  color: var(--confirmacion-texto);
+}
+
+
+.confirmacion-texto p {
+
+  margin: 0 0 25px;
+
+  font-size: 0.95rem;
+
+  line-height: 1.6;
+
+  color: var(--confirmacion-suave);
+}
+
+
+// ==================================================
+// BOTÓN WHATSAPP
+// ==================================================
+
+.btn-whatsapp {
+
+  width: 100%;
+
+  min-height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 14px 20px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: var(--confirmacion-color);
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.btn-whatsapp:hover {
+
+  background: var(--confirmacion-color-hover);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 20px rgba(37, 211, 102, 0.25);
+}
+
+
+.btn-whatsapp:active {
+
+  transform: translateY(0);
+}
+
+
+// ==================================================
+// ICONO DEL BOTÓN
+// ==================================================
+
+.whatsapp-icono {
+
+  font-size: 20px;
+}
+
+
+// ==================================================
+// FLECHA
+// ==================================================
+
+.flecha {
+
+  margin-left: 5px;
+
+  transition: transform 0.25s ease;
+}
+
+
+.btn-whatsapp:hover .flecha {
+
+  transform: translateX(5px);
+}
+
+
+// ==================================================
+// ANIMACIONES
+// ==================================================
+
+@keyframes entradaConfirmacion {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(25px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes pulsoWhatsApp {
+
+  0%,
+  100% {
+
+    transform: scale(1);
+  }
+
+  50% {
+
+    transform: scale(1.08);
+  }
+}
+
+
+// ==================================================
+// MÓVIL
+// ==================================================
+
+@media (max-width: 600px) {
+
+  .confirmacion {
+
+    padding: 20px 15px;
+  }
+
+  .confirmacion-contenido {
+
+    padding: 25px 20px;
+  }
+
+  .confirmacion-texto h3 {
+
+    font-size: 1.45rem;
+  }
+
+  .btn-whatsapp {
+
+    font-size: 0.9rem;
+  }
+}
+
+
+// ==================================================
+// REDUCIR ANIMACIONES
+// ==================================================
+
+@media (prefers-reduced-motion: reduce) {
+
+  .confirmacion,
+  .confirmacion-icono {
+
+    animation: none;
+  }
+
+  .btn-whatsapp {
+
+    transition: none;
+  }
+}

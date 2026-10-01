@@ -1,0 +1,143 @@
+<div
+  class="fecha-hora"
+  [class.con-contador]="mostrarContador()"
+>
+
+  <!-- =====================================================
+       FECHA
+       ===================================================== -->
+
+  @if (fechaFormateada()) {
+
+    <div class="fecha-evento">
+
+      <span
+        class="icono-fecha"
+        aria-hidden="true"
+      >
+        📅
+      </span>
+
+      <span class="fecha-texto">
+        {{ fechaFormateada() }}
+      </span>
+
+    </div>
+
+  }
+
+
+  <!-- =====================================================
+       HORA
+       ===================================================== -->
+
+  @if (horaFormateada()) {
+
+    <div class="hora-evento">
+
+      <span
+        class="icono-hora"
+        aria-hidden="true"
+      >
+        🕐
+      </span>
+
+      <span class="hora-texto">
+        {{ horaFormateada() }}
+      </span>
+
+    </div>
+
+  }
+
+
+  <!-- =====================================================
+       CONTADOR REGRESIVO
+       ===================================================== -->
+  <!--
+       Solamente se mostrará cuando la tarjeta solicite:
+
+       [mostrarContador]="true"
+
+       Esto lo utilizaremos principalmente en Tarjeta 3.
+  -->
+
+  @if (mostrarContador()) {
+
+    <div class="contador">
+
+      <div class="contador-titulo">
+        <span>✨</span>
+        <span>Faltan</span>
+        <span>✨</span>
+      </div>
+
+
+      <div class="contador-grid">
+
+        <!-- DÍAS -->
+
+        <div class="contador-unidad">
+
+          <span class="contador-numero">
+            {{ dias() | number:'2.0-0' }}
+          </span>
+
+          <span class="contador-label">
+            Días
+          </span>
+
+        </div>
+
+
+        <!-- HORAS -->
+
+        <div class="contador-unidad">
+
+          <span class="contador-numero">
+            {{ horas() | number:'2.0-0' }}
+          </span>
+
+          <span class="contador-label">
+            Horas
+          </span>
+
+        </div>
+
+
+        <!-- MINUTOS -->
+
+        <div class="contador-unidad">
+
+          <span class="contador-numero">
+            {{ minutos() | number:'2.0-0' }}
+          </span>
+
+          <span class="contador-label">
+            Minutos
+          </span>
+
+        </div>
+
+
+        <!-- SEGUNDOS -->
+
+        <div class="contador-unidad">
+
+          <span class="contador-numero">
+            {{ segundos() | number:'2.0-0' }}
+          </span>
+
+          <span class="contador-label">
+            Segundos
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  }
+
+</div>

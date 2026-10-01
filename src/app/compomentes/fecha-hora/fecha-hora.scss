@@ -1,0 +1,407 @@
+// ==========================================================
+// FECHA Y HORA
+// ==========================================================
+
+.fecha-hora {
+
+  // Variables que posteriormente podremos modificar
+  // desde las tarjetas.
+
+  --fecha-color:
+    #ffffff;
+
+  --fecha-color-secundario:
+    rgba(255, 255, 255, 0.70);
+
+  --fecha-acento:
+    #d4af37;
+
+  --fecha-fondo:
+    rgba(255, 255, 255, 0.05);
+
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  color:
+    var(--fecha-color);
+
+  animation:
+    fechaEntrada
+    0.7s
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+}
+
+
+// ==========================================================
+// FECHA
+// ==========================================================
+
+.fecha-evento {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  color:
+    var(--fecha-color);
+
+  font-size:
+    clamp(
+      1rem,
+      3vw,
+      1.25rem
+    );
+
+  font-weight: 600;
+
+  text-transform: capitalize;
+
+}
+
+
+// ==========================================================
+// HORA
+// ==========================================================
+
+.hora-evento {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  color:
+    var(--fecha-color-secundario);
+
+  font-size:
+    1rem;
+
+}
+
+
+// ==========================================================
+// ICONOS
+// ==========================================================
+
+.icono-fecha,
+.icono-hora {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 1.2rem;
+
+}
+
+
+// ==========================================================
+// CONTADOR
+// ==========================================================
+
+.contador {
+
+  width: min(
+    100%,
+    650px
+  );
+
+  margin-top: 20px;
+
+  padding: 22px;
+
+  box-sizing: border-box;
+
+  border-radius: 22px;
+
+  background:
+    var(--fecha-fondo);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.10);
+
+  backdrop-filter:
+    blur(10px);
+
+  -webkit-backdrop-filter:
+    blur(10px);
+
+  animation:
+    contadorEntrada
+    0.8s
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+}
+
+
+// ==========================================================
+// TÍTULO DEL CONTADOR
+// ==========================================================
+
+.contador-titulo {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  color:
+    var(--fecha-color-secundario);
+
+  font-size: 0.8rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+
+}
+
+
+// ==========================================================
+// GRID DEL CONTADOR
+// ==========================================================
+
+.contador-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 12px;
+
+}
+
+
+// ==========================================================
+// UNIDAD
+// ==========================================================
+
+.contador-unidad {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 0;
+
+  padding:
+    15px
+    8px;
+
+  border-radius: 15px;
+
+  background:
+    rgba(0, 0, 0, 0.18);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+}
+
+
+// ==========================================================
+// NÚMERO
+// ==========================================================
+
+.contador-numero {
+
+  color:
+    var(--fecha-color);
+
+  font-size:
+    clamp(
+      1.5rem,
+      5vw,
+      2.4rem
+    );
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  font-variant-numeric:
+    tabular-nums;
+
+}
+
+
+// ==========================================================
+// TEXTO
+// ==========================================================
+
+.contador-label {
+
+  margin-top: 8px;
+
+  color:
+    var(--fecha-color-secundario);
+
+  font-size: 0.7rem;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+
+}
+
+
+// ==========================================================
+// ANIMACIONES
+// ==========================================================
+
+@keyframes fechaEntrada {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(15px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+@keyframes contadorEntrada {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(20px)
+      scale(0.97);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+// ==========================================================
+// RESPONSIVE
+// ==========================================================
+
+@media (max-width: 600px) {
+
+  .fecha-hora {
+
+    padding:
+      15px 10px;
+
+  }
+
+
+  .contador {
+
+    padding:
+      16px 10px;
+
+    border-radius:
+      18px;
+
+  }
+
+
+  .contador-grid {
+
+    gap: 7px;
+
+  }
+
+
+  .contador-unidad {
+
+    padding:
+      12px 5px;
+
+    border-radius:
+      12px;
+
+  }
+
+
+  .contador-label {
+
+    font-size:
+      0.6rem;
+
+  }
+
+}
+
+
+// ==========================================================
+// REDUCIR ANIMACIONES
+// ==========================================================
+
+@media (prefers-reduced-motion: reduce) {
+
+  .fecha-hora,
+  .contador {
+
+    animation:
+      none;
+
+  }
+
+}

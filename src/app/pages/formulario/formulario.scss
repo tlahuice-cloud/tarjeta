@@ -1,0 +1,836 @@
+// ==========================================================
+// CONTENEDOR PRINCIPAL
+// ==========================================================
+
+.formulario-container {
+  position: relative;
+
+  max-width: 900px;
+
+  margin: 50px auto;
+  padding: 40px;
+
+  color: #ffffff;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  // Efecto Glass
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.02)
+    );
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-radius: 28px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.14);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.35);
+
+  overflow: hidden;
+
+  // Animación inicial
+  animation:
+    entradaFormulario
+    0.7s
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+
+  // ========================================================
+  // RESPLANDOR DECORATIVO
+  // ========================================================
+
+  &::before {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    top: -180px;
+    right: -140px;
+
+    border-radius: 50%;
+
+    background:
+      radial-gradient(
+        circle,
+        rgba(255, 0, 128, 0.20),
+        transparent 70%
+      );
+
+    pointer-events: none;
+  }
+
+
+  &::after {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    bottom: -170px;
+    left: -140px;
+
+    border-radius: 50%;
+
+    background:
+      radial-gradient(
+        circle,
+        rgba(0, 229, 255, 0.14),
+        transparent 70%
+      );
+
+    pointer-events: none;
+  }
+}
+
+
+// ==========================================================
+// ENCABEZADO
+// ==========================================================
+
+.form-header {
+  position: relative;
+  z-index: 1;
+
+  text-align: center;
+
+  margin-bottom: 35px;
+
+
+  .form-badge {
+    display: inline-block;
+
+    padding: 7px 15px;
+
+    margin-bottom: 12px;
+
+    border-radius: 30px;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    background:
+      rgba(255, 255, 255, 0.08);
+
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.12);
+
+    color: #eeeeee;
+  }
+
+
+  h2 {
+    margin: 0 0 10px;
+
+    font-size:
+      clamp(
+        1.7rem,
+        4vw,
+        2.4rem
+      );
+
+    font-weight: 800;
+
+    background:
+      linear-gradient(
+        135deg,
+        #ff4da6,
+        #b66cff,
+        #00e5ff
+      );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    animation:
+      moverGradiente
+      5s linear infinite;
+  }
+
+
+  p {
+    max-width: 600px;
+
+    margin: auto;
+
+    color: #bdbdbd;
+
+    line-height: 1.6;
+
+    font-size: 0.95rem;
+  }
+}
+
+
+// ==========================================================
+// GRID DEL FORMULARIO
+// ==========================================================
+
+.form-grid {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+
+// ==========================================================
+// CAMPOS
+// ==========================================================
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+
+  // Campo que ocupa las dos columnas
+  &.full-width {
+    grid-column: 1 / -1;
+  }
+
+
+  // --------------------------------------------------------
+  // LABEL
+  // --------------------------------------------------------
+
+  label {
+    padding-left: 3px;
+
+    font-size: 0.88rem;
+
+    font-weight: 650;
+
+    color: #dedede;
+
+    transition:
+      color 0.3s ease;
+  }
+
+
+  // --------------------------------------------------------
+  // INPUTS
+  // --------------------------------------------------------
+
+  input,
+  select,
+  textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    border-radius: 13px;
+
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.14);
+
+    background:
+      rgba(0, 0, 0, 0.25);
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 0.95rem;
+
+    outline: none;
+
+    transition:
+      border-color 0.3s ease,
+      background 0.3s ease,
+      box-shadow 0.3s ease,
+      transform 0.25s ease;
+
+
+    // Placeholder
+    &::placeholder {
+      color: #777777;
+    }
+
+
+    // Hover
+    &:hover {
+      border-color:
+        rgba(255, 255, 255, 0.30);
+
+      background:
+        rgba(0, 0, 0, 0.32);
+    }
+
+
+    // Focus
+    &:focus {
+      border-color: #ff3b9d;
+
+      background:
+        rgba(0, 0, 0, 0.38);
+
+      box-shadow:
+        0 0 0 3px rgba(255, 0, 128, 0.10),
+        0 0 18px rgba(255, 0, 128, 0.16);
+
+      transform:
+        translateY(-1px);
+    }
+  }
+
+
+  // Textarea
+  textarea {
+    resize: vertical;
+
+    min-height: 110px;
+
+    line-height: 1.5;
+  }
+
+
+  // Select
+  select {
+    cursor: pointer;
+
+    option {
+      background: #181818;
+
+      color: #ffffff;
+    }
+  }
+
+
+  // Cuando cualquier elemento interno tiene foco
+  &:focus-within {
+
+    label {
+      color: #ff75bb;
+    }
+  }
+}
+
+
+// ==========================================================
+// FRASE DEL EVENTO
+// ==========================================================
+
+.evento-frase {
+
+  grid-column: 1 / -1;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 18px 20px;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 0, 128, 0.08),
+      rgba(121, 40, 202, 0.08)
+    );
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.09);
+
+  box-shadow:
+    inset
+    0 1px 0
+    rgba(255, 255, 255, 0.05);
+
+
+  span {
+    flex-shrink: 0;
+
+    font-size: 1.8rem;
+
+    animation:
+      flotarEmoji
+      3s ease-in-out infinite;
+  }
+
+
+  p {
+    margin: 0;
+
+    color: #dddddd;
+
+    font-size: 0.95rem;
+
+    line-height: 1.5;
+  }
+}
+
+
+// ==========================================================
+// CAMPOS QUE APARECEN DINÁMICAMENTE
+// ==========================================================
+
+.campo-dinamico {
+
+  animation:
+    aparecerCampo
+    0.45s
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+}
+
+
+// ==========================================================
+// ÁREA DE DISEÑOS
+// ==========================================================
+
+.form-actions {
+
+  grid-column: 1 / -1;
+
+  margin-top: 15px;
+
+  padding-top: 30px;
+
+  text-align: center;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+
+  .step-label {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    padding: 5px 12px;
+
+    border-radius: 20px;
+
+    background:
+      rgba(255, 255, 255, 0.07);
+
+    color: #aaaaaa;
+
+    font-size: 0.72rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+  }
+
+
+  h3 {
+    margin:
+      0
+      0
+      20px;
+
+    color: #eeeeee;
+
+    font-size: 1.15rem;
+  }
+}
+
+
+// ==========================================================
+// BOTONES
+// ==========================================================
+
+.btn-group {
+
+  display: flex;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 15px;
+
+
+  .btn {
+
+    position: relative;
+
+    min-width: 150px;
+
+    padding: 13px 24px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    font-family: inherit;
+
+    font-weight: 750;
+
+    font-size: 0.9rem;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      filter 0.25s ease;
+
+
+    span {
+      margin-right: 5px;
+    }
+
+
+    // Brillo animado
+    &::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: -130%;
+
+      width: 70%;
+      height: 100%;
+
+      transform:
+        skewX(-20deg);
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.35),
+          transparent
+        );
+
+      transition:
+        left 0.6s ease;
+    }
+
+
+    &:hover {
+
+      transform:
+        translateY(-4px)
+        scale(1.02);
+
+      filter:
+        brightness(1.08);
+
+
+      &::before {
+        left: 150%;
+      }
+    }
+
+
+    &:active {
+
+      transform:
+        translateY(-1px)
+        scale(0.98);
+    }
+
+
+    // ------------------------------------------------------
+    // DISEÑO 1
+    // ------------------------------------------------------
+
+    &.btn-1 {
+
+      color: #ffffff;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff0080,
+          #7928ca
+        );
+
+      box-shadow:
+        0 8px 25px
+        rgba(255, 0, 128, 0.25);
+
+
+      &:hover {
+        box-shadow:
+          0 12px 32px
+          rgba(255, 0, 128, 0.40);
+      }
+    }
+
+
+    // ------------------------------------------------------
+    // DISEÑO 2
+    // ------------------------------------------------------
+
+    &.btn-2 {
+
+      color: #ffffff;
+
+      background:
+        linear-gradient(
+          135deg,
+          #00c6ff,
+          #3949ff
+        );
+
+      box-shadow:
+        0 8px 25px
+        rgba(0, 198, 255, 0.20);
+
+
+      &:hover {
+        box-shadow:
+          0 12px 32px
+          rgba(0, 198, 255, 0.35);
+      }
+    }
+
+
+    // ------------------------------------------------------
+    // DISEÑO 3
+    // ------------------------------------------------------
+
+    &.btn-3 {
+
+      color: #201600;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffe259,
+          #ffa751
+        );
+
+      box-shadow:
+        0 8px 25px
+        rgba(255, 167, 81, 0.22);
+
+
+      &:hover {
+        box-shadow:
+          0 12px 32px
+          rgba(255, 167, 81, 0.35);
+      }
+    }
+  }
+}
+
+
+// ==========================================================
+// ANIMACIONES
+// ==========================================================
+
+
+// Entrada del formulario completo
+@keyframes entradaFormulario {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+// Campos dinámicos
+@keyframes aparecerCampo {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-10px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+// Emoji flotante
+@keyframes flotarEmoji {
+
+  0%,
+  100% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-5px);
+  }
+
+}
+
+
+// Gradiente del título
+@keyframes moverGradiente {
+
+  0% {
+    background-position:
+      0% center;
+  }
+
+  100% {
+    background-position:
+      200% center;
+  }
+
+}
+
+
+// ==========================================================
+// TABLET / CELULAR
+// ==========================================================
+
+@media (max-width: 700px) {
+
+  .formulario-container {
+
+    margin:
+      20px
+      12px;
+
+    padding:
+      28px
+      20px;
+
+    border-radius:
+      22px;
+  }
+
+
+  .form-grid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .form-group {
+
+    &.full-width {
+      grid-column:
+        auto;
+    }
+
+  }
+
+
+  .evento-frase {
+
+    grid-column:
+      auto;
+
+  }
+
+
+  .form-actions {
+
+    grid-column:
+      auto;
+
+  }
+
+
+  .btn-group {
+
+    flex-direction:
+      column;
+
+
+    .btn {
+
+      width:
+        100%;
+
+    }
+  }
+
+}
+
+
+// ==========================================================
+// ACCESIBILIDAD
+// ==========================================================
+// Si el usuario tiene desactivadas las animaciones
+// en su sistema operativo, respetamos esa configuración.
+// ==========================================================
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+
+  }
+
+}

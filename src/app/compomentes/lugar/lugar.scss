@@ -1,0 +1,441 @@
+// ==========================================================
+// COMPONENTE LUGAR
+// ==========================================================
+
+.lugar {
+
+  // --------------------------------------------------------
+  // VARIABLES BASE
+  // --------------------------------------------------------
+
+  --lugar-color:
+    #ffffff;
+
+  --lugar-color-secundario:
+    rgba(255, 255, 255, 0.68);
+
+  --lugar-acento:
+    #d4af37;
+
+  --lugar-fondo:
+    rgba(255, 255, 255, 0.05);
+
+  --lugar-borde:
+    rgba(255, 255, 255, 0.10);
+
+
+  // --------------------------------------------------------
+  // ESTRUCTURA
+  // --------------------------------------------------------
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 25px;
+
+  border-radius: 22px;
+
+  background:
+    var(--lugar-fondo);
+
+  border:
+    1px solid
+    var(--lugar-borde);
+
+  color:
+    var(--lugar-color);
+
+  text-align: center;
+
+  animation:
+    lugarEntrada
+    0.7s
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+}
+
+
+// ==========================================================
+// ENCABEZADO
+// ==========================================================
+
+.lugar-encabezado {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 13px;
+
+  margin-bottom: 18px;
+
+}
+
+
+// ==========================================================
+// ICONO
+// ==========================================================
+
+.lugar-icono {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 45px;
+
+  height: 45px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    rgba(212, 175, 55, 0.12);
+
+  border:
+    1px solid
+    rgba(212, 175, 55, 0.25);
+
+  font-size: 1.3rem;
+
+  animation:
+    iconoLugar
+    3s
+    ease-in-out
+    infinite;
+
+}
+
+
+// ==========================================================
+// TÍTULO
+// ==========================================================
+
+.lugar-titulo {
+
+  text-align: left;
+
+
+  .etiqueta {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color:
+      var(--lugar-color-secundario);
+
+    font-size: 0.7rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+
+    text-transform: uppercase;
+
+  }
+
+
+  h3 {
+
+    margin: 0;
+
+    color:
+      var(--lugar-color);
+
+    font-size:
+      clamp(
+        1.1rem,
+        3vw,
+        1.45rem
+      );
+
+    font-weight: 750;
+
+    line-height: 1.2;
+
+  }
+
+}
+
+
+// ==========================================================
+// DIRECCIÓN
+// ==========================================================
+
+.lugar-direccion {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  max-width: 600px;
+
+  margin:
+    0
+    auto
+    20px;
+
+
+  .direccion-icono {
+
+    flex-shrink: 0;
+
+    margin-top: 2px;
+
+    font-size: 1rem;
+
+  }
+
+
+  p {
+
+    margin: 0;
+
+    color:
+      var(--lugar-color-secundario);
+
+    font-size: 0.9rem;
+
+    line-height: 1.5;
+
+  }
+
+}
+
+
+// ==========================================================
+// BOTÓN GOOGLE MAPS
+// ==========================================================
+
+.btn-maps {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  min-width: 160px;
+
+  padding:
+    11px
+    20px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--lugar-acento),
+      #b88a20
+    );
+
+  color: #171717;
+
+  font-family: inherit;
+
+  font-size: 0.85rem;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px
+    rgba(212, 175, 55, 0.18);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+
+
+  &:hover {
+
+    transform:
+      translateY(-3px);
+
+    filter:
+      brightness(1.08);
+
+    box-shadow:
+      0 12px 28px
+      rgba(212, 175, 55, 0.30);
+
+  }
+
+
+  &:active {
+
+    transform:
+      translateY(-1px)
+      scale(0.98);
+
+  }
+
+
+  .flecha {
+
+    transition:
+      transform 0.25s ease;
+
+  }
+
+
+  &:hover .flecha {
+
+    transform:
+      translateX(4px);
+
+  }
+
+}
+
+
+// ==========================================================
+// ESTADO SIN MAPS
+// ==========================================================
+
+.lugar.sin-maps {
+
+  .lugar-direccion {
+
+    margin-bottom: 0;
+
+  }
+
+}
+
+
+// ==========================================================
+// ANIMACIONES
+// ==========================================================
+
+@keyframes lugarEntrada {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(18px)
+      scale(0.98);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+@keyframes iconoLugar {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-4px);
+
+  }
+
+}
+
+
+// ==========================================================
+// RESPONSIVE
+// ==========================================================
+
+@media (max-width: 600px) {
+
+  .lugar {
+
+    padding:
+      20px
+      15px;
+
+    border-radius:
+      18px;
+
+  }
+
+
+  .lugar-encabezado {
+
+    gap: 10px;
+
+  }
+
+
+  .lugar-icono {
+
+    width: 40px;
+
+    height: 40px;
+
+    font-size:
+      1.1rem;
+
+  }
+
+
+  .lugar-direccion {
+
+    align-items: center;
+
+  }
+
+
+  .btn-maps {
+
+    width: 100%;
+
+  }
+
+}
+
+
+// ==========================================================
+// REDUCIR ANIMACIONES
+// ==========================================================
+
+@media (prefers-reduced-motion: reduce) {
+
+  .lugar,
+  .lugar-icono {
+
+    animation:
+      none;
+
+  }
+
+}

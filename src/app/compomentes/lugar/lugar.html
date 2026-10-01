@@ -1,0 +1,97 @@
+<section
+  class="lugar"
+  [class.sin-maps]="!tieneMaps()"
+>
+
+  <!-- ======================================================
+       ENCABEZADO
+       ====================================================== -->
+
+  <div class="lugar-encabezado">
+
+    <span
+      class="lugar-icono"
+      aria-hidden="true"
+    >
+      📍
+    </span>
+
+    <div class="lugar-titulo">
+
+      <span class="etiqueta">
+        Lugar del evento
+      </span>
+
+      @if (nombreLugar()) {
+
+        <h3>
+          {{ nombreLugar() }}
+        </h3>
+
+      }
+
+    </div>
+
+  </div>
+
+
+  <!-- ======================================================
+       DIRECCIÓN
+       ====================================================== -->
+
+  @if (direccion()) {
+
+    <div class="lugar-direccion">
+
+      <span
+        class="direccion-icono"
+        aria-hidden="true"
+      >
+        🏠
+      </span>
+
+      <p>
+        {{ direccion() }}
+      </p>
+
+    </div>
+
+  }
+
+
+  <!-- ======================================================
+       BOTÓN GOOGLE MAPS
+       ====================================================== -->
+
+  @if (tieneMaps()) {
+
+    <button
+      type="button"
+      class="btn-maps"
+      (click)="abrirMaps()"
+      aria-label="Abrir ubicación en Google Maps"
+    >
+
+      <span
+        class="maps-icono"
+        aria-hidden="true"
+      >
+        🗺️
+      </span>
+
+      <span>
+        Cómo llegar
+      </span>
+
+      <span
+        class="flecha"
+        aria-hidden="true"
+      >
+        →
+      </span>
+
+    </button>
+
+  }
+
+</section>

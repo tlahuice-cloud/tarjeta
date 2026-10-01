@@ -1,0 +1,108 @@
+<section
+  class="invitacion"
+  [attr.data-tipo]="tipoEvento()"
+>
+
+  <!-- ============================================= -->
+  <!-- TÍTULO PRINCIPAL                             -->
+  <!-- ============================================= -->
+
+  <h2 class="titulo-invitacion">
+    INVITACIÓN
+  </h2>
+
+
+  <!-- ============================================= -->
+  <!-- DECORACIÓN SUPERIOR                          -->
+  <!-- ============================================= -->
+
+  <div
+    class="decoracion decoracion-superior"
+    aria-hidden="true"
+  >
+
+    <span></span>
+    <b>✦</b>
+    <span></span>
+
+  </div>
+
+
+  <!-- ============================================= -->
+  <!-- ELEMENTO TEMÁTICO                            -->
+  <!-- ============================================= -->
+
+  <div
+    class="elementos-evento"
+    aria-hidden="true"
+  >
+
+    @for (
+      icono of iconosEvento();
+      track $index
+    ) {
+
+      <span
+        class="elemento-evento"
+        [class.elemento-izquierdo]="
+          $index === 0 &&
+          iconosEvento().length > 1
+        "
+        [class.elemento-derecho]="
+          $index === 1
+        "
+      >
+        {{ icono }}
+      </span>
+
+    }
+
+  </div>
+
+
+  <!-- ============================================= -->
+  <!-- TEXTO                                        -->
+  <!-- ============================================= -->
+
+  <div class="invitacion-contenido">
+
+    <span class="texto-pequeno">
+      Tenemos el honor de invitarte a
+    </span>
+
+
+    <div
+      class="linea-decorativa"
+      aria-hidden="true"
+    >
+
+      <span></span>
+      <b>✦</b>
+      <span></span>
+
+    </div>
+
+
+    <span class="tipo-evento">
+      {{ nombreEvento() }}
+    </span>
+
+  </div>
+
+
+  <!-- ============================================= -->
+  <!-- DECORACIÓN INFERIOR                          -->
+  <!-- ============================================= -->
+
+  <div
+    class="decoracion decoracion-inferior"
+    aria-hidden="true"
+  >
+
+    <span></span>
+    <b>✦</b>
+    <span></span>
+
+  </div>
+
+</section>

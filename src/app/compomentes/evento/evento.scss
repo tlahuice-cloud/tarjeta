@@ -1,0 +1,375 @@
+// ==========================================================
+// COMPONENTE EVENTO
+// ==========================================================
+
+.evento {
+
+  // --------------------------------------------------------
+  // VARIABLES DE DISEÑO
+  // --------------------------------------------------------
+  // Estas variables podrán ser modificadas posteriormente
+  // por cada tarjeta.
+  // --------------------------------------------------------
+
+  --evento-color:
+    #ffffff;
+
+  --evento-color-secundario:
+    rgba(255, 255, 255, 0.65);
+
+  --evento-acento:
+    #d4af37;
+
+  --evento-fondo:
+    transparent;
+
+  --evento-tamano-evento:
+    0.85rem;
+
+  --evento-tamano-nombre:
+    clamp(2rem, 6vw, 4rem);
+
+  --evento-peso-nombre:
+    700;
+
+  --evento-espaciado:
+    14px;
+
+
+  // ========================================================
+  // ESTRUCTURA
+  // ========================================================
+
+  position: relative;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 25px;
+
+  text-align: center;
+
+  color:
+    var(--evento-color);
+
+  background:
+    var(--evento-fondo);
+
+  // Entrada inicial
+  animation:
+    eventoEntrada
+    0.8s
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+}
+
+
+// ==========================================================
+// TIPO DE EVENTO
+// ==========================================================
+
+.evento-tipo {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  color:
+    var(--evento-color-secundario);
+
+  font-size:
+    var(--evento-tamano-evento);
+
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+}
+
+
+// ==========================================================
+// ICONO
+// ==========================================================
+
+.evento-icono {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 1.4rem;
+
+  animation:
+    eventoIcono
+    3s
+    ease-in-out
+    infinite;
+
+}
+
+
+// ==========================================================
+// NOMBRE DEL EVENTO
+// ==========================================================
+
+.evento-nombre {
+
+  white-space: nowrap;
+
+}
+
+
+// ==========================================================
+// CONTENEDOR DE NOMBRES
+// ==========================================================
+
+.evento-nombres {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 5px;
+
+}
+
+
+// ==========================================================
+// NOMBRE DE PERSONA
+// ==========================================================
+
+.evento-nombre-persona {
+
+  display: block;
+
+  color:
+    var(--evento-color);
+
+  font-size:
+    var(--evento-tamano-nombre);
+
+  font-weight:
+    var(--evento-peso-nombre);
+
+  line-height: 1.05;
+
+  letter-spacing: -0.02em;
+
+  text-wrap: balance;
+
+  animation:
+    nombreEntrada
+    0.8s
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+}
+
+
+// ==========================================================
+// SEPARADOR
+// ==========================================================
+
+.evento-separador {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  width: min(280px, 70%);
+
+  margin:
+    var(--evento-espaciado)
+    auto;
+
+
+  span {
+
+    flex: 1;
+
+    height: 1px;
+
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        var(--evento-acento),
+        transparent
+      );
+
+    opacity: 0.7;
+  }
+
+
+  b {
+
+    color:
+      var(--evento-acento);
+
+    font-size: 1rem;
+
+    font-weight: 500;
+  }
+
+}
+
+
+// ==========================================================
+// ANIMACIÓN DE ENTRADA
+// ==========================================================
+
+@keyframes eventoEntrada {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(20px)
+      scale(0.97);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+// ==========================================================
+// ANIMACIÓN DE LOS NOMBRES
+// ==========================================================
+
+@keyframes nombreEntrada {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(15px);
+
+    filter:
+      blur(5px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+    filter:
+      blur(0);
+
+  }
+
+}
+
+
+// ==========================================================
+// ANIMACIÓN DEL ICONO
+// ==========================================================
+
+@keyframes eventoIcono {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(0deg);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-4px)
+      rotate(3deg);
+
+  }
+
+}
+
+
+// ==========================================================
+// RESPONSIVE
+// ==========================================================
+
+@media (max-width: 600px) {
+
+  .evento {
+
+    padding:
+      20px
+      12px;
+
+  }
+
+
+  .evento-nombre-persona {
+
+    font-size:
+      clamp(
+        1.8rem,
+        10vw,
+        3rem
+      );
+
+  }
+
+
+  .evento-tipo {
+
+    font-size:
+      0.75rem;
+
+  }
+
+}
+
+
+// ==========================================================
+// RESPETAR PREFERENCIA DEL USUARIO
+// ==========================================================
+
+@media (prefers-reduced-motion: reduce) {
+
+  .evento,
+  .evento-icono,
+  .evento-nombre-persona {
+
+    animation:
+      none;
+
+  }
+
+}
