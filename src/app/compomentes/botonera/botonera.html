@@ -1,1 +1,84 @@
 <p>botonera works!</p>
+<nav
+  class="botonera"
+  aria-label="Navegación de la invitación"
+>
+
+  <!-- ============================================= -->
+  <!-- INICIO                                       -->
+  <!-- ============================================= -->
+
+  <button
+    type="button"
+    class="boton"
+    [class.activo]="seccionActual() === 'inicio'"
+    (click)="seleccionarSeccion('inicio')"
+    aria-label="Ir al inicio"
+  >
+
+    <span
+      class="boton-icono"
+      aria-hidden="true"
+    >
+      ✦
+    </span>
+
+    <span class="boton-texto">
+      Inicio
+    </span>
+
+  </button>
+
+
+  <!-- ============================================= -->
+  <!-- DETALLES                                     -->
+  <!-- ============================================= -->
+
+  <button
+    type="button"
+    class="boton"
+    [class.activo]="seccionActual() === 'detalles'"
+    (click)="seleccionarSeccion('detalles')"
+    aria-label="Ver fecha, hora y lugar"
+  >
+
+    <span
+      class="boton-icono"
+      aria-hidden="true"
+    >
+      📅
+    </span>
+
+    <span class="boton-texto">
+      Detalles
+    </span>
+
+  </button>
+
+
+  <!-- ============================================= -->
+  <!-- GALERÍA                                      -->
+  <!-- ============================================= -->
+
+  <button
+    type="button"
+    class="boton"
+    [class.activo]="seccionActual() === 'galeria'"
+    (click)="seleccionarSeccion('galeria')"
+    aria-label="Ver galería y confirmar asistencia"
+  >
+
+    <span
+      class="boton-icono"
+      aria-hidden="true"
+    >
+      ♡
+    </span>
+
+    <span class="boton-texto">
+      Galería
+    </span>
+
+  </button>
+
+</nav>

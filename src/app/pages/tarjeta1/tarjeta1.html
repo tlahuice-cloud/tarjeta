@@ -1,1 +1,114 @@
-<p>tarjeta1 works!</p>
+<!-- ============================================================
+     PANTALLA DE ENTRADA
+     ============================================================ -->
+
+@if (!mostrarTarjeta()) {
+
+  <section class="pantalla-entrada">
+
+    <app-entrada
+      (sobreAbiertoEvent)="mostrarContenido()">
+    </app-entrada>
+
+  </section>
+
+}
+
+
+<!-- ============================================================
+     TARJETA BÁSICA
+     ============================================================ -->
+
+@if (mostrarTarjeta()) {
+
+  <main
+    class="tarjeta-basica"
+    [class.contenido-visible]="mostrarContenidoTarjeta()"
+    [attr.data-tipo]="datos().tipoEvento">
+
+
+    <!-- ========================================================
+         ENCABEZADO / INVITACIÓN
+         ======================================================== -->
+
+    <section class="bloque bloque-invitacion">
+
+      <app-invitacion>
+      </app-invitacion>
+
+    </section>
+
+
+    <!-- ========================================================
+         EVENTO
+         ======================================================== -->
+
+    <section class="bloque bloque-evento">
+
+      <app-evento>
+      </app-evento>
+
+    </section>
+
+
+    <!-- ========================================================
+         FECHA Y HORA
+         ======================================================== -->
+
+    <section class="bloque bloque-fecha">
+
+      <app-fecha-hora>
+      </app-fecha-hora>
+
+    </section>
+
+
+    <!-- ========================================================
+         LUGAR
+         ======================================================== -->
+
+    <section class="bloque bloque-lugar">
+
+      <app-lugar>
+      </app-lugar>
+
+    </section>
+
+
+    <!-- ========================================================
+         PIE DE LA INVITACIÓN
+         ======================================================== -->
+
+    <footer class="pie-tarjeta">
+
+      <div class="adorno-pie" aria-hidden="true">
+
+        <span></span>
+
+        <b>✦</b>
+
+        <span></span>
+
+      </div>
+
+
+      <p>
+        Será un placer compartir este momento contigo.
+      </p>
+
+
+      <div class="adorno-pie" aria-hidden="true">
+
+        <span></span>
+
+        <b>✦</b>
+
+        <span></span>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+}

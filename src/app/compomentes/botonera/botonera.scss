@@ -1,0 +1,285 @@
+// ==================================================
+// BOTONERA — TARJETA 3
+// ==================================================
+
+.botonera {
+
+  // ------------------------------------------------
+  // VARIABLES
+  // ------------------------------------------------
+
+  --boton-color: #7d4b57;
+  --boton-acento: #c8a45d;
+  --boton-texto: #6b625c;
+  --boton-fondo: rgba(255, 255, 255, 0.94);
+
+
+  // ------------------------------------------------
+  // CONTENEDOR
+  // ------------------------------------------------
+
+  position: fixed;
+
+  left: 50%;
+
+  bottom: 18px;
+
+  z-index: 1000;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  width: min(
+    calc(100% - 30px),
+    430px
+  );
+
+  padding: 8px;
+
+  transform:
+    translateX(-50%);
+
+  border:
+    1px solid
+    rgba(125, 75, 87, 0.12);
+
+  border-radius: 22px;
+
+  background:
+    var(--boton-fondo);
+
+  box-shadow:
+    0 10px 35px
+    rgba(0, 0, 0, 0.12);
+
+  backdrop-filter:
+    blur(15px);
+
+  -webkit-backdrop-filter:
+    blur(15px);
+
+  animation:
+    aparecerBotonera
+    0.8s
+    ease
+    both;
+}
+
+
+// ==================================================
+// BOTÓN
+// ==================================================
+
+.boton {
+
+  position: relative;
+
+  flex: 1;
+
+  min-width: 0;
+
+  min-height: 58px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 3px;
+
+  padding: 7px 10px;
+
+  border: none;
+
+  border-radius: 16px;
+
+  background: transparent;
+
+  color: var(--boton-texto);
+
+  font-family: inherit;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+// ==================================================
+// ICONO
+// ==================================================
+
+.boton-icono {
+
+  font-size: 18px;
+
+  line-height: 1;
+
+  transition:
+    transform 0.3s ease;
+}
+
+
+// ==================================================
+// TEXTO
+// ==================================================
+
+.boton-texto {
+
+  font-size: 0.7rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+}
+
+
+// ==================================================
+// HOVER
+// ==================================================
+
+.boton:hover {
+
+  color: var(--boton-color);
+
+  transform:
+    translateY(-2px);
+}
+
+
+.boton:hover .boton-icono {
+
+  transform:
+    scale(1.12);
+}
+
+
+// ==================================================
+// ACTIVO
+// ==================================================
+
+.boton.activo {
+
+  background:
+    rgba(125, 75, 87, 0.09);
+
+  color:
+    var(--boton-color);
+}
+
+
+.boton.activo::after {
+
+  content: '';
+
+  position: absolute;
+
+  bottom: 3px;
+
+  left: 50%;
+
+  width: 18px;
+
+  height: 2px;
+
+  border-radius: 2px;
+
+  background:
+    var(--boton-acento);
+
+  transform:
+    translateX(-50%);
+}
+
+
+// ==================================================
+// ANIMACIÓN DE ENTRADA
+// ==================================================
+
+@keyframes aparecerBotonera {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateX(-50%)
+      translateY(30px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateX(-50%)
+      translateY(0);
+  }
+}
+
+
+// ==================================================
+// MÓVIL
+// ==================================================
+
+@media (max-width: 480px) {
+
+  .botonera {
+
+    bottom: 12px;
+
+    width:
+      calc(100% - 20px);
+
+    border-radius: 20px;
+  }
+
+
+  .boton {
+
+    min-height: 54px;
+
+    border-radius: 15px;
+  }
+
+
+  .boton-icono {
+
+    font-size: 17px;
+  }
+
+
+  .boton-texto {
+
+    font-size: 0.65rem;
+  }
+}
+
+
+// ==================================================
+// REDUCIR MOVIMIENTO
+// ==================================================
+
+@media (prefers-reduced-motion: reduce) {
+
+  .botonera {
+
+    animation: none;
+  }
+
+  .boton {
+
+    transition: none;
+  }
+}

@@ -1,5 +1,5 @@
 // ==================================================
-// ENTRADA — SOBRE 2D
+// ENTRADA — SOBRE 2D (OCULTAMIENTO JUNTO AL DESTELLO)
 // ==================================================
 
 .entrada {
@@ -8,7 +8,7 @@
   // VARIABLES
   // -----------------------------------------------
 
-  --entrada-fondo: #f7f1e8;
+  --entrada-fondo: #0a0a0b;
 
   --sobre-color: #eee1d0;
   --sobre-color-oscuro: #dfcdb7;
@@ -17,127 +17,109 @@
   --sello-color: #9b3d46;
   --sello-color-oscuro: #752d35;
 
-  --texto: #5c4b3e;
-  --acento: #9b3d46;
-
+  --texto: #f2f2f2;
+  --acento: #d4af37;
 
   // -----------------------------------------------
   // PANTALLA
   // -----------------------------------------------
 
   position: fixed;
-
   inset: 0;
-
   z-index: 9999;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 35px;
-
   padding: 30px;
-
   overflow: hidden;
 
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 255, 255, 0.9),
-      rgba(247, 241, 232, 0.98)
-    );
+  background: radial-gradient(
+    circle at center,
+    #1a1a1e 0%,
+    var(--entrada-fondo) 100%
+  );
 
   animation: aparecerEntrada 0.8s ease both;
 }
 
-
 // ==================================================
-// SOBRE
+// SOBRE + DESTELLO LENTO
 // ==================================================
 
 .sobre {
-
   position: relative;
-
   width: min(80vw, 430px);
-
   aspect-ratio: 1.55;
-
   perspective: none;
 
-  filter:
-    drop-shadow(
-      0 25px 35px rgba(0, 0, 0, 0.16)
-    );
-}
+  filter: drop-shadow(
+    0 25px 35px rgba(0, 0, 0, 0.7)
+  );
 
+  // DESTELLO LENTO Y ENVOLVENTE
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250%;
+    height: 250%;
+    transform: translate(-50%, -50%) scale(0);
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(247, 227, 175, 0.9) 30%,
+      rgba(212, 175, 55, 0.5) 60%,
+      transparent 80%
+    );
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 50;
+  }
+}
 
 // ==================================================
 // CUERPO PRINCIPAL
 // ==================================================
 
 .sobre-cuerpo {
-
   position: absolute;
-
   inset: 0;
-
   z-index: 1;
-
   overflow: hidden;
-
   border: 1px solid var(--sobre-borde);
-
   border-radius: 4px;
-
-  background:
-    linear-gradient(
-      145deg,
-      var(--sobre-color),
-      #f5eadc
-    );
+  background: linear-gradient(
+    145deg,
+    var(--sobre-color),
+    #f5eadc
+  );
 }
-
 
 // ==================================================
 // PAPEL INTERIOR
 // ==================================================
 
 .papel {
-
   position: absolute;
-
   left: 9%;
-
   right: 9%;
-
   bottom: 4%;
-
   height: 86%;
-
   z-index: 2;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   background: #fffdf9;
-
   border: 1px solid rgba(80, 55, 35, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 
-  box-shadow:
-    0 5px 15px rgba(0, 0, 0, 0.08);
-
-  transform:
-    translateY(18%);
-
+  transform: translateY(18%);
   opacity: 0;
 
   transition:
@@ -147,81 +129,46 @@
   pointer-events: none;
 }
 
-
-// ==================================================
-// CONTENIDO DEL PAPEL
-// ==================================================
-
 .papel-contenido {
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   gap: 8px;
-
-  color: var(--texto);
-
+  color: #5c4b3e;
   text-align: center;
 }
 
-
 .papel-adorno {
-
   font-size: 1.5rem;
-
-  color: var(--acento);
+  color: var(--sello-color);
 }
 
-
 .papel-texto {
-
-  font-family:
-    Georgia,
-    'Times New Roman',
-    serif;
-
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 0.9rem;
-
   font-style: italic;
-
   letter-spacing: 0.08em;
 }
 
-
 // ==================================================
-// SOLAPA SUPERIOR
+// SOLAPAS
 // ==================================================
 
 .sobre-solapa {
-
   position: absolute;
-
   top: 0;
-
   left: 0;
-
   width: 100%;
-
   height: 58%;
-
   z-index: 5;
 
-  background:
-    linear-gradient(
-      145deg,
-      #f2e6d7,
-      var(--sobre-color-oscuro)
-    );
-
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    50% 100%
+  background: linear-gradient(
+    145deg,
+    #f2e6d7,
+    var(--sobre-color-oscuro)
   );
 
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top center;
 
   transition:
@@ -231,482 +178,242 @@
   backface-visibility: hidden;
 }
 
-
-// ==================================================
-// SOLAPA IZQUIERDA
-// ==================================================
-
 .sobre-lateral {
-
   position: absolute;
-
   bottom: 0;
-
   width: 52%;
-
   height: 100%;
-
   z-index: 4;
-
-  background:
-    linear-gradient(
-      135deg,
-      #eadac7,
-      #dfcdb7
-    );
-
+  background: linear-gradient(135deg, #eadac7, #dfcdb7);
   pointer-events: none;
 }
-
 
 .sobre-lateral-izquierda {
-
   left: 0;
-
-  clip-path: polygon(
-    0 0,
-    100% 50%,
-    0 100%
-  );
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
-
 
 .sobre-lateral-derecha {
-
   right: 0;
-
-  clip-path: polygon(
-    100% 0,
-    0 50%,
-    100% 100%
-  );
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
 }
 
-
-// ==================================================
-// SOLAPA INFERIOR
-// ==================================================
-
 .sobre-solapa-inferior {
-
   position: absolute;
-
   left: 0;
-
   bottom: 0;
-
   width: 100%;
-
   height: 58%;
-
   z-index: 6;
 
-  background:
-    linear-gradient(
-      25deg,
-      #e5d2bd,
-      #f0e1cf
-    );
-
-  clip-path: polygon(
-    0 100%,
-    50% 0,
-    100% 100%
-  );
-
+  background: linear-gradient(25deg, #e5d2bd, #f0e1cf);
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
   pointer-events: none;
 }
 
-
 // ==================================================
-// SELLO
+// SELLO ANIMADO
 // ==================================================
 
 .sello {
-
   position: absolute;
-
   left: 50%;
-
   top: 51%;
-
   z-index: 10;
 
   width: 76px;
-
   height: 76px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   padding: 0;
-
   border: none;
-
   border-radius: 50%;
 
-  transform:
-    translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #b84d57,
-      var(--sello-color)
-    );
+  background: radial-gradient(
+    circle at 35% 30%,
+    #c8525e,
+    var(--sello-color) 70%,
+    var(--sello-color-oscuro) 100%
+  );
 
   color: white;
-
   cursor: pointer;
 
-  box-shadow:
-    0 7px 15px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 
   transition:
-    transform 0.18s ease,
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
     opacity 0.4s ease,
     box-shadow 0.25s ease;
 
-  animation: pulsoSello 2.5s ease-in-out infinite;
+  animation: selloVivo 3s ease-in-out infinite;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(212, 175, 55, 0.6) 0%,
+      transparent 70%
+    );
+    opacity: 0.3;
+    animation: resplandorSello 3s ease-in-out infinite;
+  }
 }
-
-
-// ==================================================
-// BORDE DEL SELLO
-// ==================================================
 
 .sello-borde {
-
   position: absolute;
-
   inset: 6px;
-
-  border: 1px solid rgba(255, 255, 255, 0.55);
-
+  border: 1px dashed rgba(255, 255, 255, 0.65);
   border-radius: 50%;
+  animation: girarBordeSello 12s linear infinite;
 }
-
-
-// ==================================================
-// SÍMBOLO DEL SELLO
-// ==================================================
 
 .sello-simbolo {
-
   position: relative;
-
   z-index: 2;
-
   font-size: 1.7rem;
-
   line-height: 1;
-
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  animation: pulsoSimbolo 2s ease-in-out infinite;
 }
-
-
-// ==================================================
-// HOVER DEL SELLO
-// ==================================================
 
 .sello:hover {
+  transform: translate(-50%, -50%) scale(1.12) rotate(4deg);
+  box-shadow: 0 12px 28px rgba(155, 61, 70, 0.5);
 
-  transform:
-    translate(-50%, -50%)
-    scale(1.08);
-
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.25);
+  &::before {
+    opacity: 1;
+  }
 }
-
-
-// ==================================================
-// SELLO PRESIONADO
-// ==================================================
 
 .sello.sello-presionado {
-
   animation: ninguna;
-
-  transform:
-    translate(-50%, -50%)
-    scale(0.88);
+  transform: translate(-50%, -50%) scale(0.82);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
-
-
-// ==================================================
-// SELLO DESAPARECE
-// ==================================================
 
 .sello.sello-oculto {
-
   opacity: 0;
-
   pointer-events: none;
-
-  transform:
-    translate(-50%, -50%)
-    scale(0.65);
+  transform: translate(-50%, -50%) scale(0.4) rotate(-15deg);
 }
 
-
 // ==================================================
-// SOBRE ABIERTO
+// SOBRE ABIERTO + OCULTAMIENTO SINCRONIZADO
 // ==================================================
 
 .entrada-abierta {
 
+  // El sobre empieza a desvanecerse al MISMO TIEMPO que el resplandor se expande (1.1s)
+  animation: desvanecerConDestello 1.2s ease 1.1s forwards;
+
   .sobre-solapa {
-
-    transform:
-      rotateX(180deg);
-
+    transform: rotateX(180deg);
     z-index: 0;
   }
 
-
   .papel {
-
-    transform:
-      translateY(-32%);
-
+    transform: translateY(-32%);
     opacity: 1;
-
     transition-delay: 0.25s;
   }
+
+  // Activa el destello al 1.1s con duración de 1.8s
+  .sobre::after {
+    animation: destelloGrandeyLento 1.8s cubic-bezier(0.25, 1, 0.5, 1) 1.1s forwards;
+  }
 }
 
-
 // ==================================================
-// INDICACIÓN
+// KEYFRAMES
 // ==================================================
 
-.indicacion {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 9px;
-
-  color: var(--texto);
-
-  font-family:
-    Georgia,
-    'Times New Roman',
-    serif;
-
-  font-size: 0.95rem;
-
-  letter-spacing: 0.05em;
-
-  animation:
-    aparecerIndicacion 0.8s ease 0.5s both;
+@keyframes desvanecerConDestello {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
-
-.indicacion-icono {
-
-  color: var(--acento);
-
-  animation:
-    brilloEstrella 1.8s ease-in-out infinite;
+@keyframes destelloGrandeyLento {
+  0% {
+    transform: translate(-50%, -50%) scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3.8);
+    opacity: 0;
+  }
 }
-
-
-// ==================================================
-// MENSAJE DESPUÉS DE ABRIR
-// ==================================================
-
-.mensaje-apertura {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  color: var(--texto);
-
-  font-family:
-    Georgia,
-    'Times New Roman',
-    serif;
-
-  font-size: 0.9rem;
-
-  letter-spacing: 0.08em;
-
-  animation:
-    aparecerMensaje 0.8s ease 0.8s both;
-}
-
-
-.mensaje-apertura span:first-child,
-.mensaje-apertura span:last-child {
-
-  color: var(--acento);
-}
-
-
-// ==================================================
-// ANIMACIONES
-// ==================================================
 
 @keyframes aparecerEntrada {
-
-  from {
-
-    opacity: 0;
-  }
-
-  to {
-
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-
-@keyframes pulsoSello {
-
-  0%,
-  100% {
-
-    box-shadow:
-      0 7px 15px rgba(0, 0, 0, 0.22);
+@keyframes selloVivo {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0) scale(1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   }
-
   50% {
-
-    box-shadow:
-      0 7px 25px rgba(155, 61, 70, 0.35);
+    transform: translate(-50%, -50%) translateY(-6px) scale(1.05);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 18px rgba(155, 61, 70, 0.45);
   }
 }
 
+@keyframes resplandorSello {
+  0%, 100% { opacity: 0.2; transform: scale(0.95); }
+  50% { opacity: 0.8; transform: scale(1.15); }
+}
+
+@keyframes girarBordeSello {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulsoSimbolo {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
 
 @keyframes aparecerIndicacion {
-
-  from {
-
-    opacity: 0;
-
-    transform:
-      translateY(10px);
-  }
-
-  to {
-
-    opacity: 1;
-
-    transform:
-      translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
 
 @keyframes aparecerMensaje {
-
-  from {
-
-    opacity: 0;
-
-    transform:
-      translateY(12px);
-  }
-
-  to {
-
-    opacity: 1;
-
-    transform:
-      translateY(0);
-  }
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-
-@keyframes brilloEstrella {
-
-  0%,
-  100% {
-
-    opacity: 0.5;
-
-    transform:
-      scale(0.9);
-  }
-
-  50% {
-
-    opacity: 1;
-
-    transform:
-      scale(1.15);
-  }
-}
-
 
 // ==================================================
-// MÓVIL
+// MÓVIL Y ACCESIBILIDAD
 // ==================================================
 
 @media (max-width: 600px) {
-
-  .entrada {
-
-    padding: 20px;
-  }
-
-
-  .sobre {
-
-    width: min(88vw, 380px);
-  }
-
-
-  .sello {
-
-    width: 68px;
-
-    height: 68px;
-  }
-
-
-  .sello-simbolo {
-
-    font-size: 1.5rem;
-  }
-
-
-  .indicacion {
-
-    font-size: 0.85rem;
-  }
+  .entrada { padding: 20px; }
+  .sobre { width: min(88vw, 380px); }
+  .sello { width: 68px; height: 68px; }
+  .sello-simbolo { font-size: 1.5rem; }
+  .indicacion { font-size: 0.85rem; }
 }
 
-
-// ==================================================
-// ACCESIBILIDAD
-// ==================================================
-
 @media (prefers-reduced-motion: reduce) {
-
-  .entrada,
-  .sello,
-  .indicacion-icono,
-  .indicacion,
-  .mensaje-apertura {
-
-    animation: none;
-  }
-
-  .sobre-solapa,
-  .papel,
-  .sello {
-
-    transition: none;
-  }
+  .entrada, .sello, .indicacion, .mensaje-apertura, .sello-borde, .sello-simbolo { animation: none; }
+  .sobre-solapa, .papel, .sello { transition: none; }
 }

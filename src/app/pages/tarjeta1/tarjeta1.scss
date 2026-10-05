@@ -1,0 +1,114 @@
+/* --- Animaciones --- */
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes goldGlow {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.15);
+  }
+  50% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(212, 175, 55, 0.35);
+  }
+}
+
+/* --- Contenedor Principal (Host / Envoltorio) --- */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #080808;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* --- La Tarjeta (Formato Celular / Tarjeta Física) --- */
+.invitacion, .card-container, .tarjeta-container { // Ajusta la clase raíz según tu HTML
+  width: 100%;
+  max-width: 380px; // Ancho máximo para mantener proporción de tarjeta de celular
+  min-height: 600px;
+  max-height: 90vh; // Evita que sobrepase la pantalla del teléfono
+  
+  background: linear-gradient(180deg, #121212 0%, #0a0a0a 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3); // Borde dorado tenue elegante
+  border-radius: 20px;
+  
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  
+  overflow-y: auto; // Desplazamiento interno suave solo si es necesario en pantallas muy pequeñas
+  position: relative;
+  
+  // Animación de entrada y resplandor
+  animation: cardAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+             goldGlow 5s ease-in-out infinite;
+
+  /* Estilos para los textos e íconos dentro de la tarjeta */
+  h1, .titulo {
+    font-family: 'Cinzel', 'Playfair Display', serif; // Fuente elegante de boda
+    font-size: 2rem;
+    letter-spacing: 4px;
+    color: #e5c158; // Dorado elegante
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  p, span {
+    color: #d1d1d1;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Sección / Botón "Lugar del evento" */
+  .lugar-evento, .btn-lugar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 30px;
+    padding: 0.8rem 1rem;
+    margin: 1.2rem 0;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    
+    color: #e5c158;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    
+    transition: all 0.3s ease;
+
+    &:hover, &:active {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: #e5c158;
+      transform: translateY(-2px);
+    }
+  }
+
+  /* Mensaje final inferior */
+  .mensaje-final {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #a0a0a0;
+    margin-top: 1rem;
+  }
+}

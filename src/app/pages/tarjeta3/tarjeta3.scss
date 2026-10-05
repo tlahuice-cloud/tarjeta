@@ -1,0 +1,330 @@
+// =========================================================
+// PANTALLA DE ENTRADA (FONDO NEGRO)
+// =========================================================
+
+.pantalla-entrada {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at center,
+    #18181c 0%,
+    #08080a 100%
+  );
+}
+
+// =========================================================
+// TARJETA 2 — DISEÑO MEDIO (MODO OSCURO / VISTA MÓVIL)
+// =========================================================
+
+:host {
+  --fondo: #08080a;
+  --fondo-tarjeta: rgba(22, 22, 26, 0.78);
+  --texto: #f3f3f5;
+  --texto-suave: #a1a1aa;
+  --acento: #d4af37;
+  --linea: rgba(212, 175, 55, 0.3);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--fondo);
+  box-sizing: border-box;
+}
+
+// =========================================================
+// CONTENEDOR PRINCIPAL (FORMATO TARJETA MÓVIL)
+// =========================================================
+
+.tarjeta {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  max-height: 92vh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 24px 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background: linear-gradient(180deg, #141418 0%, #0d0d10 100%);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 24px;
+
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(212, 175, 55, 0.1);
+
+  color: var(--texto);
+
+  // Scrollbar personalizado discreto
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.25);
+    border-radius: 4px;
+  }
+}
+
+// =========================================================
+// CHISPAS Y LUCES ANIMADAS DE FONDO
+// =========================================================
+
+.tarjeta::before,
+.tarjeta::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+}
+
+// Luz flotante 1
+.tarjeta::before {
+  top: -50px;
+  left: -50px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.22) 0%,
+    rgba(212, 175, 55, 0.05) 50%,
+    transparent 70%
+  );
+  filter: blur(20px);
+  animation: flotarLuz 7s ease-in-out infinite alternate;
+}
+
+// Luz flotante 2
+.tarjeta::after {
+  bottom: -50px;
+  right: -50px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(
+    circle,
+    rgba(180, 140, 50, 0.18) 0%,
+    rgba(150, 100, 30, 0.04) 50%,
+    transparent 70%
+  );
+  filter: blur(25px);
+  animation: flotarLuz 9s ease-in-out infinite alternate-reverse;
+}
+
+// =========================================================
+// DECORACIÓN SUPERIOR CON CHISPA
+// =========================================================
+
+.decoracion-superior {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin: 0 auto 18px;
+}
+
+.decoracion-superior span {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--linea), transparent);
+}
+
+.decoracion-superior b {
+  color: var(--acento);
+  font-size: 1.1rem;
+  animation: brilloChispa 2s ease-in-out infinite;
+}
+
+// =========================================================
+// BLOQUES DE CONTENIDO CON CRISTAL OSCURO
+// =========================================================
+
+.bloque {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 14px 0;
+  padding: 18px 16px;
+  box-sizing: border-box;
+
+  background: var(--fondo-tarjeta);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(12px);
+
+  animation: aparecer 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba(212, 175, 55, 0.45);
+    box-shadow: 
+      0 12px 30px rgba(0, 0, 0, 0.5),
+      0 0 15px rgba(212, 175, 55, 0.15);
+  }
+}
+
+// =========================================================
+// ENTRADA EN CASCADA DE CADA SECCIÓN
+// =========================================================
+
+.bloque-invitacion   { animation-delay: 0.05s; }
+.bloque-evento       { animation-delay: 0.15s; }
+.bloque-fecha        { animation-delay: 0.25s; }
+.bloque-lugar        { animation-delay: 0.35s; }
+.bloque-confirmacion { animation-delay: 0.45s; }
+
+// =========================================================
+// ETIQUETAS DE SECCIÓN
+// =========================================================
+
+.etiqueta-seccion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.etiqueta-seccion span {
+  color: var(--acento);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.contenido-bloque {
+  width: 100%;
+}
+
+// =========================================================
+// PIE DE TARJETA
+// =========================================================
+
+.pie-tarjeta {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 25px auto 10px;
+  text-align: center;
+  color: var(--texto-suave);
+}
+
+.pie-tarjeta p {
+  margin: 12px 0 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #d1d1d6;
+}
+
+.linea-pie {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.linea-pie span {
+  width: 45px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--linea), transparent);
+}
+
+.linea-pie b {
+  color: var(--acento);
+  font-size: 0.95rem;
+  animation: brilloChispa 2.5s ease-in-out infinite;
+}
+
+// =========================================================
+// ANIMACIONES
+// =========================================================
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes flotarLuz {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(25px, 20px) scale(1.15);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-15px, 35px) scale(0.95);
+    opacity: 0.5;
+  }
+}
+
+@keyframes brilloChispa {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.9);
+    filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.2));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8));
+  }
+}
+
+// =========================================================
+// ACCESIBILIDAD Y RESPONSIVE
+// =========================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .bloque,
+  .tarjeta::before,
+  .tarjeta::after,
+  .decoracion-superior b,
+  .linea-pie b {
+    animation: none;
+  }
+  .bloque { transition: none; }
+}
+
+@media (max-width: 480px) {
+  .tarjeta {
+    padding: 20px 12px;
+    max-height: 95vh;
+  }
+
+  .bloque {
+    margin: 12px 0;
+    padding: 15px 12px;
+    border-radius: 14px;
+  }
+
+  .etiqueta-seccion span {
+    font-size: 0.6rem;
+  }
+}

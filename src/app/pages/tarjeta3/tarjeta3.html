@@ -1,1 +1,160 @@
-<p>tarjeta3 works!</p>
+<!-- =========================================================
+     SOBRE DE ENTRADA
+     ========================================================= -->
+
+@if (!mostrarTarjeta()) {
+
+  <section class="pantalla-entrada">
+
+    <app-entrada
+      (sobreAbiertoEvent)="mostrarContenido()">
+    </app-entrada>
+
+  </section>
+
+}
+
+
+<!-- =========================================================
+     TARJETA 3 PRO
+     ========================================================= -->
+
+@if (mostrarTarjeta()) {
+
+  <main
+    class="tarjeta-pro"
+    [attr.data-tipo]="datos().tipoEvento"
+  >
+
+
+    <!-- =====================================================
+         SECCIÓN INICIO
+         ===================================================== -->
+
+    @if (seccionActual() === 'inicio') {
+
+      <section class="seccion-pro seccion-inicio">
+
+        <div class="numero-seccion">
+          01
+        </div>
+
+        <app-invitacion></app-invitacion>
+
+        <app-evento></app-evento>
+
+      </section>
+
+    }
+
+
+    <!-- =====================================================
+         SECCIÓN DETALLES
+         ===================================================== -->
+
+    @if (seccionActual() === 'detalles') {
+
+      <section class="seccion-pro seccion-detalles">
+
+        <div class="numero-seccion">
+          02
+        </div>
+
+        <app-fecha-hora
+          [mostrarContador]="true">
+        </app-fecha-hora>
+
+        <app-lugar></app-lugar>
+
+        <app-confirmacion></app-confirmacion>
+
+      </section>
+
+    }
+
+
+    <!-- =====================================================
+         SECCIÓN GALERÍA
+         ===================================================== -->
+
+    @if (seccionActual() === 'galeria') {
+
+      <section class="seccion-pro seccion-galeria">
+
+        <div class="numero-seccion">
+          03
+        </div>
+
+        <div class="encabezado-seccion">
+
+          <span class="etiqueta">
+            MOMENTOS
+          </span>
+
+          <h2>
+            Nuestra galería
+          </h2>
+
+        </div>
+
+
+        <!-- ===============================================
+             GALERÍA
+             =============================================== -->
+
+        <div class="galeria">
+
+          @if (datos().galeriaFotos.length > 0) {
+
+            @for (
+              foto of datos().galeriaFotos;
+              track $index
+            ) {
+
+              <div class="foto">
+
+                <img
+                  [src]="foto"
+                  alt="Fotografía del evento"
+                >
+
+              </div>
+
+            }
+
+          } @else {
+
+            <div class="galeria-vacia">
+
+              <span aria-hidden="true">
+                ✦
+              </span>
+
+              <p>
+                Próximamente compartiremos
+                nuestros momentos especiales.
+              </p>
+
+            </div>
+
+          }
+
+        </div>
+
+      </section>
+
+    }
+
+
+    <!-- =====================================================
+         BOTONERA
+         ===================================================== -->
+
+    <app-botonera
+      (cambiarSeccion)="cambiarSeccion($event)">
+    </app-botonera>
+
+
+  </main>
+
+}

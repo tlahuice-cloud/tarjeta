@@ -1,1 +1,165 @@
-<p>tarjeta2 works!</p>
+<!-- =========================================================
+     SOBRE DE ENTRADA
+     ========================================================= -->
+
+@if (!mostrarTarjeta()) {
+
+  <section class="pantalla-entrada">
+
+    <app-entrada
+      (sobreAbiertoEvent)="mostrarContenido()">
+    </app-entrada>
+
+  </section>
+
+}
+
+
+<!-- =========================================================
+     TARJETA 2
+     ========================================================= -->
+
+@if (mostrarTarjeta()) {
+
+  <main
+    class="tarjeta tarjeta-media"
+    [attr.data-tipo]="datos().tipoEvento"
+  >
+
+    <!-- =====================================================
+         DECORACIÓN SUPERIOR
+         ===================================================== -->
+
+    <div
+      class="decoracion-superior"
+      aria-hidden="true">
+
+      <span></span>
+
+      <b>✦</b>
+
+      <span></span>
+
+    </div>
+
+
+    <!-- =====================================================
+         INVITACIÓN
+         ===================================================== -->
+
+    <section class="bloque bloque-invitacion">
+
+      <div class="contenido-bloque">
+
+        <app-invitacion></app-invitacion>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         EVENTO
+         ===================================================== -->
+
+    <section class="bloque bloque-evento">
+
+      <div class="etiqueta-seccion">
+        <span>EL GRAN MOMENTO</span>
+      </div>
+
+      <div class="contenido-bloque">
+
+        <app-evento></app-evento>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FECHA Y HORA
+         ===================================================== -->
+
+    <section class="bloque bloque-fecha">
+
+      <div class="etiqueta-seccion">
+        <span>FECHA Y HORA</span>
+      </div>
+
+      <div class="contenido-bloque">
+
+        <app-fecha-hora
+          [mostrarContador]="false">
+        </app-fecha-hora>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LUGAR
+         ===================================================== -->
+
+    <section class="bloque bloque-lugar">
+
+      <div class="etiqueta-seccion">
+        <span>TE ESPERAMOS EN</span>
+      </div>
+
+      <div class="contenido-bloque">
+
+        <app-lugar></app-lugar>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONFIRMACIÓN
+         ===================================================== -->
+
+    <section class="bloque bloque-confirmacion">
+
+      <div class="etiqueta-seccion">
+        <span>CONFIRMACIÓN</span>
+      </div>
+
+      <div class="contenido-bloque">
+
+        <app-confirmacion></app-confirmacion>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PIE
+         ===================================================== -->
+
+    <footer class="pie-tarjeta">
+
+      <div
+        class="linea-pie"
+        aria-hidden="true">
+
+        <span></span>
+
+        <b>✦</b>
+
+        <span></span>
+
+      </div>
+
+      <p>
+        Gracias por acompañarnos en este momento tan especial.
+      </p>
+
+    </footer>
+
+  </main>
+
+}
