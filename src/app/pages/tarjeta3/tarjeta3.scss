@@ -1,330 +1,2066 @@
-// =========================================================
-// PANTALLA DE ENTRADA (FONDO NEGRO)
-// =========================================================
-
-.pantalla-entrada {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: radial-gradient(
-    circle at center,
-    #18181c 0%,
-    #08080a 100%
-  );
-}
-
-// =========================================================
-// TARJETA 2 — DISEÑO MEDIO (MODO OSCURO / VISTA MÓVIL)
-// =========================================================
+// ============================================================
+// TARJETA 3 PRO
+// Invitación móvil premium
+// ============================================================
 
 :host {
-  --fondo: #08080a;
-  --fondo-tarjeta: rgba(22, 22, 26, 0.78);
-  --texto: #f3f3f5;
-  --texto-suave: #a1a1aa;
-  --acento: #d4af37;
-  --linea: rgba(212, 175, 55, 0.3);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  --negro: #020202;
+  --negro-2: #070707;
+  --negro-3: #101010;
+
+  --blanco: #f8f8f8;
+  --gris: #a5a5a5;
+  --gris-2: #686868;
+
+  --dorado: #d4af37;
+  --dorado-claro: #f2d878;
+  --dorado-suave: rgba(212, 175, 55, 0.25);
+
+  display: block;
+
   width: 100%;
-  background-color: var(--fondo);
+  min-height: 100dvh;
+
+  margin: 0;
+  padding: 0;
+
+  background: #000;
+
+  color: var(--blanco);
+
   box-sizing: border-box;
 }
 
-// =========================================================
-// CONTENEDOR PRINCIPAL (FORMATO TARJETA MÓVIL)
-// =========================================================
 
-.tarjeta {
+// ============================================================
+// PANTALLA DE ENTRADA
+// ============================================================
+
+.pantalla-entrada {
+
   position: relative;
+
   width: 100%;
-  max-width: 420px;
-  max-height: 92vh;
+  min-height: 100dvh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(212, 175, 55, 0.12),
+      transparent 38%
+    ),
+
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(212, 175, 55, 0.06),
+      transparent 30%
+    ),
+
+    #000;
+}
+
+
+// ============================================================
+// TARJETA PRINCIPAL
+// ============================================================
+
+.tarjeta-pro {
+
+  position: relative;
+
+  width: 100%;
+  max-width: 430px;
+
+  min-height: 100dvh;
+
   margin: 0 auto;
+
+  overflow: hidden;
+
   box-sizing: border-box;
-  padding: 24px 16px;
-  overflow-y: auto;
-  overflow-x: hidden;
 
-  background: linear-gradient(180deg, #141418 0%, #0d0d10 100%);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  border-radius: 24px;
+  isolation: isolate;
 
-  box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.8),
-    0 0 30px rgba(212, 175, 55, 0.1);
+  background:
 
-  color: var(--texto);
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(212, 175, 55, 0.08),
+      transparent 32%
+    ),
 
-  // Scrollbar personalizado discreto
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: rgba(212, 175, 55, 0.25);
-    border-radius: 4px;
-  }
+    linear-gradient(
+      180deg,
+      #090909 0%,
+      #020202 100%
+    );
+
+  color: var(--blanco);
+
+  touch-action: pan-y;
+
+  overscroll-behavior-x: none;
 }
 
-// =========================================================
-// CHISPAS Y LUCES ANIMADAS DE FONDO
-// =========================================================
 
-.tarjeta::before,
-.tarjeta::after {
+// ============================================================
+// LUZ AMBIENTAL SUPERIOR
+// ============================================================
+
+.tarjeta-pro::before {
+
   content: '';
+
   position: absolute;
-  pointer-events: none;
-  z-index: 0;
+
+  width: 280px;
+  height: 280px;
+
+  top: -130px;
+  left: -120px;
+
   border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(212, 175, 55, 0.20) 0%,
+      rgba(212, 175, 55, 0.07) 42%,
+      transparent 72%
+    );
+
+  filter: blur(45px);
+
+  animation:
+    luzSuperior
+    8s
+    ease-in-out
+    infinite alternate;
 }
 
-// Luz flotante 1
-.tarjeta::before {
-  top: -50px;
-  left: -50px;
-  width: 220px;
-  height: 220px;
-  background: radial-gradient(
-    circle,
-    rgba(212, 175, 55, 0.22) 0%,
-    rgba(212, 175, 55, 0.05) 50%,
-    transparent 70%
-  );
-  filter: blur(20px);
-  animation: flotarLuz 7s ease-in-out infinite alternate;
+
+// ============================================================
+// LUZ AMBIENTAL INFERIOR
+// ============================================================
+
+.tarjeta-pro::after {
+
+  content: '';
+
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  right: -150px;
+  bottom: -150px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(212, 175, 55, 0.15) 0%,
+      rgba(212, 175, 55, 0.04) 45%,
+      transparent 72%
+    );
+
+  filter: blur(50px);
+
+  animation:
+    luzInferior
+    10s
+    ease-in-out
+    infinite alternate;
 }
 
-// Luz flotante 2
-.tarjeta::after {
-  bottom: -50px;
-  right: -50px;
-  width: 240px;
-  height: 240px;
-  background: radial-gradient(
-    circle,
-    rgba(180, 140, 50, 0.18) 0%,
-    rgba(150, 100, 30, 0.04) 50%,
-    transparent 70%
-  );
-  filter: blur(25px);
-  animation: flotarLuz 9s ease-in-out infinite alternate-reverse;
-}
 
-// =========================================================
-// DECORACIÓN SUPERIOR CON CHISPA
-// =========================================================
+// ============================================================
+// SECCIONES
+// ============================================================
 
-.decoracion-superior {
+.seccion-pro {
+
   position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+
   width: 100%;
-  margin: 0 auto 18px;
-}
 
-.decoracion-superior span {
-  width: 50px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--linea), transparent);
-}
+  min-height: 100dvh;
 
-.decoracion-superior b {
-  color: var(--acento);
-  font-size: 1.1rem;
-  animation: brilloChispa 2s ease-in-out infinite;
-}
-
-// =========================================================
-// BLOQUES DE CONTENIDO CON CRISTAL OSCURO
-// =========================================================
-
-.bloque {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  margin: 14px 0;
-  padding: 18px 16px;
   box-sizing: border-box;
 
-  background: var(--fondo-tarjeta);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  border-radius: 16px;
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  padding:
+
+    48px
+
+    20px
+
+    100px
+
+    20px;
+
+  animation:
+
+    entradaSeccion
+
+    0.75s
+
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    both;
+}
+
+
+// ============================================================
+// NÚMERO DE SECCIÓN
+// ============================================================
+
+.numero-seccion {
+
+  position: absolute;
+
+  top: 24px;
+  left: 20px;
+
+  z-index: 10;
+
+  color:
+    rgba(212, 175, 55, 0.48);
+
+  font-family:
+
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 0.62rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.28em;
+
+  writing-mode: vertical-rl;
+
+  transform: rotate(180deg);
+
+  user-select: none;
+
+  animation:
+
+    aparecerNumero
+
+    1s
+    ease
+    both;
+}
+
+
+// ============================================================
+// DECORACIÓN
+// ============================================================
+
+.decoracion-seccion {
+
+  width: 90px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-bottom: 12px;
+
+  animation:
+
+    aparecerDecoracion
+
+    1s
+    ease
+    0.2s
+    both;
+}
+
+
+.decoracion-seccion span {
+
+  flex: 1;
+
+  height: 1px;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--dorado)
+    );
+}
+
+
+.decoracion-seccion span:last-child {
+
+  background:
+
+    linear-gradient(
+      90deg,
+      var(--dorado),
+      transparent
+    );
+}
+
+
+.decoracion-seccion b {
+
+  color: var(--dorado);
+
+  font-size: 0.8rem;
+
+  text-shadow:
+
+    0 0 10px
+    rgba(212, 175, 55, 0.75);
+
+  animation:
+
+    estrella
+
+    2.5s
+    ease-in-out
+    infinite;
+}
+
+
+// ============================================================
+// SECCIÓN INICIO
+// ============================================================
+
+.seccion-inicio {
+
+  justify-content: center;
+
+  gap: 12px;
+
+  text-align: center;
+
+  padding-top: 50px;
+}
+
+
+// ============================================================
+// INVITACIÓN
+// ============================================================
+
+.bloque-invitacion {
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  animation:
+
+    entradaInvitacion
+
+    0.9s
+
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    both;
+}
+
+
+.bloque-invitacion app-invitacion {
+
+  width: 100%;
+
+  display: block;
+}
+
+
+// ============================================================
+// EVENTO
+// ============================================================
+
+.bloque-evento {
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  animation:
+
+    entradaEvento
+
+    0.9s
+
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    0.2s
+
+    both;
+}
+
+
+.bloque-evento app-evento {
+
+  width: 100%;
+
+  display: block;
+}
+
+
+// ============================================================
+// INDICADOR DESLIZAR
+// ============================================================
+
+.indicador-deslizar {
+
+  position: absolute;
+
+  bottom: 94px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color:
+
+    rgba(
+      212,
+      175,
+      55,
+      0.65
+    );
+
+  font-size: 0.52rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.25em;
+
+  animation:
+
+    aparecerIndicador
+
+    1s
+    ease
+    0.8s
+    both;
+}
+
+
+.indicador-deslizar b {
+
+  font-size: 0.9rem;
+
+  font-weight: 400;
+
+  animation:
+
+    flechaMovimiento
+
+    1.5s
+    ease-in-out
+    infinite;
+}
+
+
+// ============================================================
+// DETALLES
+// ============================================================
+
+.seccion-detalles {
+
+  justify-content: flex-start;
+
+  gap: 12px;
+
+  padding-top: 70px;
+
+  overflow-y: auto;
+
+  scrollbar-width: none;
+
+  overscroll-behavior-y: contain;
+}
+
+
+.seccion-detalles::-webkit-scrollbar {
+
+  display: none;
+}
+
+
+// ============================================================
+// ENCABEZADO DETALLES
+// ============================================================
+
+.encabezado-detalles {
+
+  width: 100%;
+
+  text-align: center;
+
+  margin-bottom: 4px;
+
+  animation:
+
+    aparecerEncabezado
+
+    0.8s
+
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    both;
+}
+
+
+.etiqueta {
+
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--dorado);
+
+  font-size: 0.58rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.3em;
+
+  text-transform: uppercase;
+
+  text-shadow:
+
+    0 0 10px
+    rgba(212, 175, 55, 0.35);
+}
+
+
+.encabezado-detalles h2,
+.encabezado-seccion h2 {
+
+  margin: 0;
+
+  color: var(--blanco);
+
+  font-family:
+
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size:
+
+    clamp(
+      1.65rem,
+      7vw,
+      2.2rem
+    );
+
+  font-weight: 400;
+
+  line-height: 1.15;
+
+  letter-spacing: 0.02em;
+}
+
+
+// ============================================================
+// BLOQUES DE DETALLE
+// ============================================================
+
+.bloque-detalle {
+
+  position: relative;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 13px;
+
+  border-radius: 19px;
+
+  border:
+
+    1px solid
+    rgba(
+      212,
+      175,
+      55,
+      0.17
+    );
+
+  background:
+
+    linear-gradient(
+      145deg,
+      rgba(28, 28, 28, 0.78),
+      rgba(7, 7, 7, 0.88)
+    );
 
   box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.4),
-    inset 0 1px 1px rgba(255, 255, 255, 0.05);
 
-  backdrop-filter: blur(12px);
+    0 12px 30px
+    rgba(0, 0, 0, 0.45),
 
-  animation: aparecer 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    inset 0 1px 1px
+    rgba(255, 255, 255, 0.04);
 
-  &:hover {
-    transform: translateY(-2px);
-    border-color: rgba(212, 175, 55, 0.45);
-    box-shadow: 
-      0 12px 30px rgba(0, 0, 0, 0.5),
-      0 0 15px rgba(212, 175, 55, 0.15);
-  }
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+  animation:
+
+    entradaBloque
+
+    0.75s
+
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    both;
+
+  transition:
+
+    border-color 0.35s ease,
+
+    transform 0.35s ease,
+
+    box-shadow 0.35s ease;
 }
 
-// =========================================================
-// ENTRADA EN CASCADA DE CADA SECCIÓN
-// =========================================================
 
-.bloque-invitacion   { animation-delay: 0.05s; }
-.bloque-evento       { animation-delay: 0.15s; }
-.bloque-fecha        { animation-delay: 0.25s; }
-.bloque-lugar        { animation-delay: 0.35s; }
-.bloque-confirmacion { animation-delay: 0.45s; }
+.bloque-detalle:nth-of-type(2) {
 
-// =========================================================
-// ETIQUETAS DE SECCIÓN
-// =========================================================
-
-.etiqueta-seccion {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 12px;
+  animation-delay: 0.10s;
 }
 
-.etiqueta-seccion span {
-  color: var(--acento);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  text-align: center;
-  text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+
+.bloque-detalle:nth-of-type(3) {
+
+  animation-delay: 0.20s;
 }
 
-.contenido-bloque {
+
+.bloque-detalle:nth-of-type(4) {
+
+  animation-delay: 0.30s;
+}
+
+
+.bloque-detalle:hover {
+
+  transform:
+    translateY(-2px);
+
+  border-color:
+
+    rgba(
+      212,
+      175,
+      55,
+      0.38
+    );
+
+  box-shadow:
+
+    0 18px 38px
+    rgba(0, 0, 0, 0.55),
+
+    0 0 20px
+    rgba(212, 175, 55, 0.05);
+}
+
+
+// ============================================================
+// GALERÍA
+// ============================================================
+
+.seccion-galeria {
+
+  justify-content: flex-start;
+
+  padding-top: 66px;
+
+  gap: 14px;
+}
+
+
+// ============================================================
+// ENCABEZADO GALERÍA
+// ============================================================
+
+.encabezado-seccion {
+
   width: 100%;
-}
 
-// =========================================================
-// PIE DE TARJETA
-// =========================================================
-
-.pie-tarjeta {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  margin: 25px auto 10px;
   text-align: center;
-  color: var(--texto-suave);
+
+  animation:
+
+    aparecerEncabezado
+
+    0.8s
+
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    both;
 }
 
-.pie-tarjeta p {
-  margin: 12px 0 0;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 0.88rem;
+
+.encabezado-seccion p {
+
+  margin:
+
+    8px
+
+    auto
+
+    0;
+
+  max-width: 260px;
+
+  color: var(--gris);
+
+  font-family:
+
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 0.78rem;
+
   line-height: 1.5;
-  color: #d1d1d6;
 }
 
-.linea-pie {
+
+// ============================================================
+// CARRUSEL
+// ============================================================
+
+.carrusel-galeria {
+
+  position: relative;
+
+  width: 100%;
+
+  max-width: 360px;
+
+  flex: 1;
+
+  min-height: 0;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
-  gap: 12px;
+
+  touch-action: pan-y;
+
+  animation:
+
+    entrarCarrusel
+
+    0.8s
+
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    0.15s
+    both;
 }
 
-.linea-pie span {
-  width: 45px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--linea), transparent);
+
+// ============================================================
+// FOTO PRINCIPAL
+// ============================================================
+
+.foto-principal {
+
+  position: relative;
+
+  width: min(
+    78vw,
+    310px
+  );
+
+  height: min(
+    58vh,
+    430px
+  );
+
+  min-height: 260px;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  border:
+
+    1px solid
+    rgba(
+      212,
+      175,
+      55,
+      0.32
+    );
+
+  background: #090909;
+
+  box-shadow:
+
+    0 25px 55px
+    rgba(0, 0, 0, 0.75),
+
+    0 0 30px
+    rgba(212, 175, 55, 0.06);
+
+  animation:
+
+    cambiarFoto
+
+    0.55s
+
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    both;
+
+  isolation: isolate;
 }
 
-.linea-pie b {
-  color: var(--acento);
-  font-size: 0.95rem;
-  animation: brilloChispa 2.5s ease-in-out infinite;
+
+.foto-principal img {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+
+  transform: scale(1.01);
+
+  animation:
+
+    zoomFoto
+
+    8s
+    ease-in-out
+    infinite alternate;
 }
 
-// =========================================================
+
+// ============================================================
+// BRILLO SOBRE FOTO
+// ============================================================
+
+.brillo-foto {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12),
+      transparent 30%,
+      transparent 65%,
+      rgba(212, 175, 55, 0.10)
+    );
+
+  mix-blend-mode: screen;
+
+  opacity: 0.65;
+}
+
+
+// ============================================================
+// BORDE INTERIOR
+// ============================================================
+
+.foto-principal::before {
+
+  content: '';
+
+  position: absolute;
+
+  inset: 8px;
+
+  z-index: 3;
+
+  border:
+
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.10
+    );
+
+  border-radius: 18px;
+
+  pointer-events: none;
+}
+
+
+// ============================================================
+// CONTROLES DE GALERÍA
+// ============================================================
+
+.control-galeria {
+
+  position: absolute;
+
+  top: 50%;
+
+  z-index: 10;
+
+  width: 40px;
+
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  transform:
+    translateY(-50%);
+
+  border:
+
+    1px solid
+    rgba(
+      212,
+      175,
+      55,
+      0.32
+    );
+
+  border-radius: 50%;
+
+  background:
+
+    rgba(
+      5,
+      5,
+      5,
+      0.75
+    );
+
+  color: var(--dorado-claro);
+
+  font-size: 1.8rem;
+
+  font-family:
+    Georgia,
+    serif;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  backdrop-filter:
+    blur(8px);
+
+  -webkit-backdrop-filter:
+    blur(8px);
+
+  box-shadow:
+
+    0 8px 20px
+    rgba(0, 0, 0, 0.5);
+
+  transition:
+
+    transform 0.3s ease,
+
+    background 0.3s ease,
+
+    border-color 0.3s ease,
+
+    box-shadow 0.3s ease;
+}
+
+
+.control-anterior {
+
+  left: 4px;
+}
+
+
+.control-siguiente {
+
+  right: 4px;
+}
+
+
+.control-galeria:hover {
+
+  transform:
+
+    translateY(-50%)
+    scale(1.1);
+
+  border-color:
+
+    rgba(
+      212,
+      175,
+      55,
+      0.7
+    );
+
+  background:
+
+    rgba(
+      30,
+      25,
+      10,
+      0.9
+    );
+
+  box-shadow:
+
+    0 0 18px
+    rgba(
+      212,
+      175,
+      55,
+      0.20
+    );
+}
+
+
+.control-galeria:active {
+
+  transform:
+
+    translateY(-50%)
+    scale(0.92);
+}
+
+
+// ============================================================
+// CONTADOR
+// ============================================================
+
+.contador-fotos {
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 16px;
+
+  z-index: 10;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  padding:
+
+    6px
+
+    11px;
+
+  border:
+
+    1px solid
+    rgba(
+      212,
+      175,
+      55,
+      0.22
+    );
+
+  border-radius: 20px;
+
+  background:
+
+    rgba(
+      0,
+      0,
+      0,
+      0.70
+    );
+
+  color:
+
+    rgba(
+      255,
+      255,
+      255,
+      0.65
+    );
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.08em;
+
+  backdrop-filter:
+    blur(8px);
+
+  -webkit-backdrop-filter:
+    blur(8px);
+}
+
+
+.contador-fotos .actual {
+
+  color:
+    var(--dorado-claro);
+
+  font-weight: 700;
+}
+
+
+// ============================================================
+// INDICADORES DE FOTOS
+// ============================================================
+
+.indicadores-fotos {
+
+  width: 100%;
+
+  max-width: 300px;
+
+  min-height: 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  overflow: hidden;
+}
+
+
+.punto-foto {
+
+  width: 6px;
+
+  height: 6px;
+
+  flex: 0 0 auto;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background:
+
+    rgba(
+      255,
+      255,
+      255,
+      0.25
+    );
+
+  cursor: pointer;
+
+  transition:
+
+    width 0.3s ease,
+
+    transform 0.3s ease,
+
+    background 0.3s ease,
+
+    box-shadow 0.3s ease;
+}
+
+
+.punto-foto:hover {
+
+  transform:
+    scale(1.4);
+
+  background:
+    rgba(
+      212,
+      175,
+      55,
+      0.65
+    );
+}
+
+
+.punto-foto.activo {
+
+  width: 22px;
+
+  border-radius: 10px;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      var(--dorado),
+      var(--dorado-claro)
+    );
+
+  box-shadow:
+
+    0 0 9px
+    rgba(
+      212,
+      175,
+      55,
+      0.55
+    );
+}
+
+
+// ============================================================
+// GALERÍA VACÍA
+// ============================================================
+
+.galeria-vacia {
+
+  width: 100%;
+
+  max-width: 320px;
+
+  min-height: 300px;
+
+  margin: auto 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 16px;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  border-radius: 24px;
+
+  border:
+
+    1px solid
+    rgba(
+      212,
+      175,
+      55,
+      0.18
+    );
+
+  background:
+
+    radial-gradient(
+      circle at center,
+      rgba(
+        212,
+        175,
+        55,
+        0.07
+      ),
+      transparent 65%
+    ),
+
+    rgba(
+      10,
+      10,
+      10,
+      0.75
+    );
+
+  box-shadow:
+
+    0 20px 45px
+    rgba(0, 0, 0, 0.55);
+
+  animation:
+
+    entradaBloque
+
+    0.8s
+    ease
+    both;
+}
+
+
+.icono-galeria {
+
+  color:
+    var(--dorado);
+
+  font-size: 2.1rem;
+
+  text-shadow:
+
+    0 0 15px
+    rgba(
+      212,
+      175,
+      55,
+      0.65
+    );
+
+  animation:
+
+    estrella
+
+    2.5s
+    ease-in-out
+    infinite;
+}
+
+
+.galeria-vacia p {
+
+  max-width: 250px;
+
+  margin: 0;
+
+  color: var(--gris);
+
+  font-family:
+
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 0.88rem;
+
+  line-height: 1.6;
+}
+
+
+// ============================================================
+// TEXTO INFERIOR
+// ============================================================
+
+.texto-galeria {
+
+  color:
+
+    rgba(
+      212,
+      175,
+      55,
+      0.55
+    );
+
+  font-size: 0.52rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.28em;
+
+  animation:
+
+    aparecerIndicador
+
+    1s
+    ease
+    both;
+}
+
+
+// ============================================================
+// BOTONERA
+// ============================================================
+
+.tarjeta-pro > app-botonera {
+
+  position: fixed;
+
+  left: 50%;
+
+  bottom: 0;
+
+  z-index: 100;
+
+  width: 100%;
+
+  max-width: 430px;
+
+  transform:
+    translateX(-50%);
+}
+
+
+// ============================================================
 // ANIMACIONES
-// =========================================================
+// ============================================================
 
-@keyframes aparecer {
+@keyframes entradaSeccion {
+
   from {
+
     opacity: 0;
-    transform: translateY(20px) scale(0.97);
+
+    transform:
+      translateY(24px)
+      scale(0.985);
   }
+
   to {
+
     opacity: 1;
-    transform: translateY(0) scale(1);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
 }
 
-@keyframes flotarLuz {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.6;
+
+@keyframes entradaInvitacion {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(35px)
+      scale(0.94);
   }
-  50% {
-    transform: translate(25px, 20px) scale(1.15);
-    opacity: 0.9;
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
   }
+}
+
+
+@keyframes entradaEvento {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(30px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+@keyframes entradaBloque {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0.96);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+@keyframes aparecerNumero {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      rotate(180deg)
+      translateY(12px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      rotate(180deg)
+      translateY(0);
+  }
+}
+
+
+@keyframes aparecerDecoracion {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      scaleX(0);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      scaleX(1);
+  }
+}
+
+
+@keyframes aparecerEncabezado {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(22px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+@keyframes entrarCarrusel {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0.95);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+@keyframes cambiarFoto {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      scale(0.94)
+      translateX(12px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      scale(1)
+      translateX(0);
+  }
+}
+
+
+@keyframes zoomFoto {
+
+  from {
+
+    transform:
+      scale(1.01);
+  }
+
+  to {
+
+    transform:
+      scale(1.07);
+  }
+}
+
+
+@keyframes aparecerIndicador {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(8px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+@keyframes flechaMovimiento {
+
+  0%,
   100% {
-    transform: translate(-15px, 35px) scale(0.95);
-    opacity: 0.5;
-  }
-}
 
-@keyframes brilloChispa {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(0.9);
-    filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.2));
+    transform:
+      translateY(0);
+
+    opacity: 0.55;
   }
+
   50% {
+
+    transform:
+      translateY(5px);
+
     opacity: 1;
-    transform: scale(1.2);
-    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8));
   }
 }
 
-// =========================================================
-// ACCESIBILIDAD Y RESPONSIVE
-// =========================================================
+
+@keyframes estrella {
+
+  0%,
+  100% {
+
+    opacity: 0.5;
+
+    transform:
+      scale(0.9);
+
+    filter:
+      drop-shadow(
+        0 0 3px
+        rgba(
+          212,
+          175,
+          55,
+          0.25
+        )
+      );
+  }
+
+  50% {
+
+    opacity: 1;
+
+    transform:
+      scale(1.18);
+
+    filter:
+      drop-shadow(
+        0 0 12px
+        rgba(
+          212,
+          175,
+          55,
+          0.85
+        )
+      );
+  }
+}
+
+
+@keyframes luzSuperior {
+
+  0% {
+
+    transform:
+      translate(0, 0)
+      scale(1);
+
+    opacity: 0.55;
+  }
+
+  50% {
+
+    transform:
+      translate(35px, 25px)
+      scale(1.12);
+
+    opacity: 0.85;
+  }
+
+  100% {
+
+    transform:
+      translate(-15px, 45px)
+      scale(0.95);
+
+    opacity: 0.5;
+  }
+}
+
+
+@keyframes luzInferior {
+
+  0% {
+
+    transform:
+      translate(0, 0)
+      scale(1);
+
+    opacity: 0.45;
+  }
+
+  50% {
+
+    transform:
+      translate(-35px, -25px)
+      scale(1.15);
+
+    opacity: 0.75;
+  }
+
+  100% {
+
+    transform:
+      translate(20px, -45px)
+      scale(0.9);
+
+    opacity: 0.4;
+  }
+}
+
+
+// ============================================================
+// CELULARES PEQUEÑOS
+// ============================================================
+
+@media (max-width: 380px) {
+
+  .seccion-pro {
+
+    padding-left: 15px;
+
+    padding-right: 15px;
+
+    padding-bottom: 92px;
+  }
+
+
+  .numero-seccion {
+
+    left: 14px;
+  }
+
+
+  .seccion-inicio {
+
+    gap: 7px;
+  }
+
+
+  .foto-principal {
+
+    width: 74vw;
+
+    height: 54vh;
+
+    min-height: 240px;
+
+    border-radius: 20px;
+  }
+
+
+  .control-galeria {
+
+    width: 35px;
+
+    height: 35px;
+
+    font-size: 1.5rem;
+  }
+
+
+  .control-anterior {
+
+    left: 0;
+  }
+
+
+  .control-siguiente {
+
+    right: 0;
+  }
+
+
+  .encabezado-seccion h2,
+  .encabezado-detalles h2 {
+
+    font-size: 1.55rem;
+  }
+
+
+  .bloque-detalle {
+
+    padding: 10px;
+
+    border-radius: 16px;
+  }
+}
+
+
+// ============================================================
+// CELULARES MUY PEQUEÑOS
+// ============================================================
+
+@media (max-width: 350px) {
+
+  .seccion-pro {
+
+    padding-top: 42px;
+
+    padding-bottom: 88px;
+  }
+
+
+  .foto-principal {
+
+    width: 72vw;
+
+    height: 50vh;
+
+    min-height: 220px;
+  }
+
+
+  .contador-fotos {
+
+    bottom: 10px;
+  }
+
+
+  .indicadores-fotos {
+
+    gap: 4px;
+  }
+
+
+  .punto-foto {
+
+    width: 5px;
+
+    height: 5px;
+  }
+
+
+  .punto-foto.activo {
+
+    width: 18px;
+  }
+}
+
+
+// ============================================================
+// TABLET / ESCRITORIO
+// ============================================================
+
+@media (min-width: 600px) {
+
+  :host {
+
+    background:
+
+      radial-gradient(
+        circle at center,
+        #151515 0%,
+        #000 60%
+      );
+  }
+
+
+  .tarjeta-pro {
+
+    border-left:
+
+      1px solid
+      rgba(
+        212,
+        175,
+        55,
+        0.12
+      );
+
+    border-right:
+
+      1px solid
+      rgba(
+        212,
+        175,
+        55,
+        0.12
+      );
+
+    box-shadow:
+
+      0 0 80px
+      rgba(0, 0, 0, 0.8);
+  }
+}
+
+
+// ============================================================
+// ACCESIBILIDAD
+// ============================================================
 
 @media (prefers-reduced-motion: reduce) {
-  .bloque,
-  .tarjeta::before,
-  .tarjeta::after,
-  .decoracion-superior b,
-  .linea-pie b {
-    animation: none;
-  }
-  .bloque { transition: none; }
-}
 
-@media (max-width: 480px) {
-  .tarjeta {
-    padding: 20px 12px;
-    max-height: 95vh;
+  .tarjeta-pro::before,
+  .tarjeta-pro::after,
+  .seccion-pro,
+  .numero-seccion,
+  .decoracion-seccion,
+  .decoracion-seccion b,
+  .bloque-invitacion,
+  .bloque-evento,
+  .bloque-detalle,
+  .encabezado-detalles,
+  .encabezado-seccion,
+  .carrusel-galeria,
+  .foto-principal,
+  .foto-principal img,
+  .galeria-vacia,
+  .icono-galeria,
+  .indicador-deslizar,
+  .indicador-deslizar b {
+
+    animation: none !important;
   }
 
-  .bloque {
-    margin: 12px 0;
-    padding: 15px 12px;
-    border-radius: 14px;
-  }
 
-  .etiqueta-seccion span {
-    font-size: 0.6rem;
+  .control-galeria,
+  .punto-foto,
+  .bloque-detalle {
+
+    transition: none !important;
   }
 }

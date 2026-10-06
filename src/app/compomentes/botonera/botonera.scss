@@ -1,89 +1,182 @@
-// ==================================================
-// BOTONERA — TARJETA 3
-// ==================================================
+// ============================================================
+// BOTONERA PRO — TARJETA 3
+// Navegación estilo aplicación móvil
+// ============================================================
+
+:host {
+  display: block;
+
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+
+// ============================================================
+// CONTENEDOR
+// ============================================================
 
 .botonera {
 
-  // ------------------------------------------------
-  // VARIABLES
-  // ------------------------------------------------
-
-  --boton-color: #7d4b57;
-  --boton-acento: #c8a45d;
-  --boton-texto: #6b625c;
-  --boton-fondo: rgba(255, 255, 255, 0.94);
-
-
-  // ------------------------------------------------
-  // CONTENEDOR
-  // ------------------------------------------------
+  --dorado: #d4af37;
+  --dorado-claro: #f0d477;
 
   position: fixed;
 
   left: 50%;
 
-  bottom: 18px;
+  bottom: max(
+    12px,
+    env(safe-area-inset-bottom)
+  );
 
   z-index: 1000;
+
+  width: min(
+    calc(100% - 24px),
+    400px
+  );
+
+  min-height: 68px;
 
   display: flex;
 
   align-items: center;
 
-  justify-content: center;
+  justify-content: space-between;
 
   gap: 5px;
 
-  width: min(
-    calc(100% - 30px),
-    430px
-  );
+  padding: 6px;
 
-  padding: 8px;
+  box-sizing: border-box;
 
   transform:
     translateX(-50%);
 
   border:
     1px solid
-    rgba(125, 75, 87, 0.12);
+    rgba(212, 175, 55, 0.25);
 
-  border-radius: 22px;
+  border-radius: 24px;
 
   background:
-    var(--boton-fondo);
+    linear-gradient(
+      135deg,
+      rgba(25, 25, 25, 0.92),
+      rgba(5, 5, 5, 0.94)
+    );
 
   box-shadow:
-    0 10px 35px
-    rgba(0, 0, 0, 0.12);
+
+    0 15px 40px
+    rgba(0, 0, 0, 0.7),
+
+    0 0 25px
+    rgba(212, 175, 55, 0.06),
+
+    inset 0 1px 1px
+    rgba(255, 255, 255, 0.06);
 
   backdrop-filter:
-    blur(15px);
+    blur(18px);
 
   -webkit-backdrop-filter:
-    blur(15px);
+    blur(18px);
 
   animation:
     aparecerBotonera
     0.8s
-    ease
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
     both;
+
+  overflow: hidden;
 }
 
 
-// ==================================================
+// ============================================================
+// BRILLO SUPERIOR
+// ============================================================
+
+.botonera::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: 12%;
+
+  width: 76%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(212, 175, 55, 0.8),
+      transparent
+    );
+
+  opacity: 0.7;
+}
+
+
+// ============================================================
+// BRILLO AMBIENTAL
+// ============================================================
+
+.botonera::after {
+
+  content: '';
+
+  position: absolute;
+
+  top: 50%;
+
+  left: 50%;
+
+  width: 180px;
+
+  height: 80px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    rgba(212, 175, 55, 0.035);
+
+  filter:
+    blur(25px);
+
+  pointer-events: none;
+}
+
+
+// ============================================================
 // BOTÓN
-// ==================================================
+// ============================================================
 
 .boton {
 
   position: relative;
 
+  z-index: 2;
+
   flex: 1;
 
   min-width: 0;
 
-  min-height: 58px;
+  min-height: 56px;
 
   display: flex;
 
@@ -93,65 +186,136 @@
 
   justify-content: center;
 
-  gap: 3px;
+  gap: 4px;
 
-  padding: 7px 10px;
+  padding: 6px 8px;
 
   border: none;
 
-  border-radius: 16px;
+  outline: none;
 
-  background: transparent;
+  border-radius: 18px;
 
-  color: var(--boton-texto);
+  background:
+    transparent;
 
-  font-family: inherit;
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  font-family:
+    inherit;
 
   cursor: pointer;
 
+  -webkit-tap-highlight-color:
+    transparent;
+
   transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    transform 0.25s ease;
+
+    color 0.3s ease,
+
+    transform 0.3s
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    ),
+
+    background 0.3s ease;
 }
 
 
-// ==================================================
+// ============================================================
+// EFECTO AL PRESIONAR
+// ============================================================
+
+.boton:active {
+
+  transform:
+    scale(0.90);
+}
+
+
+// ============================================================
 // ICONO
-// ==================================================
+// ============================================================
 
 .boton-icono {
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 30px;
+
+  height: 30px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
 
   font-size: 18px;
 
   line-height: 1;
 
   transition:
-    transform 0.3s ease;
+
+    transform 0.4s
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    ),
+
+    color 0.3s ease,
+
+    filter 0.3s ease;
 }
 
 
-// ==================================================
+// ============================================================
 // TEXTO
-// ==================================================
+// ============================================================
 
 .boton-texto {
 
-  font-size: 0.7rem;
+  color:
+    rgba(255, 255, 255, 0.52);
+
+  font-size: 0.62rem;
 
   font-weight: 600;
 
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  transition:
+
+    color 0.3s ease,
+
+    opacity 0.3s ease;
 }
 
 
-// ==================================================
+// ============================================================
 // HOVER
-// ==================================================
+// ============================================================
 
 .boton:hover {
 
-  color: var(--boton-color);
+  color:
+    var(--dorado);
+
+  background:
+    rgba(212, 175, 55, 0.06);
 
   transform:
     translateY(-2px);
@@ -160,24 +324,94 @@
 
 .boton:hover .boton-icono {
 
+  color:
+    var(--dorado);
+
   transform:
+    translateY(-2px)
     scale(1.12);
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(212, 175, 55, 0.5)
+    );
 }
 
 
-// ==================================================
-// ACTIVO
-// ==================================================
+.boton:hover .boton-texto {
+
+  color:
+    rgba(240, 212, 119, 0.9);
+}
+
+
+// ============================================================
+// BOTÓN ACTIVO
+// ============================================================
 
 .boton.activo {
 
-  background:
-    rgba(125, 75, 87, 0.09);
-
   color:
-    var(--boton-color);
+    var(--dorado);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212, 175, 55, 0.13),
+      rgba(212, 175, 55, 0.025)
+    );
+
+  box-shadow:
+
+    inset 0 0 18px
+    rgba(212, 175, 55, 0.05);
 }
 
+
+// ============================================================
+// ICONO ACTIVO
+// ============================================================
+
+.boton.activo .boton-icono {
+
+  color:
+    var(--dorado-claro);
+
+  transform:
+    translateY(-2px)
+    scale(1.08);
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(212, 175, 55, 0.65)
+    );
+
+  animation:
+    iconoActivo
+    2.5s
+    ease-in-out
+    infinite;
+}
+
+
+// ============================================================
+// TEXTO ACTIVO
+// ============================================================
+
+.boton.activo .boton-texto {
+
+  color:
+    var(--dorado-claro);
+
+  opacity: 1;
+}
+
+
+// ============================================================
+// INDICADOR ACTIVO
+// ============================================================
 
 .boton.activo::after {
 
@@ -185,27 +419,75 @@
 
   position: absolute;
 
-  bottom: 3px;
-
   left: 50%;
 
-  width: 18px;
+  bottom: 2px;
+
+  width: 24px;
 
   height: 2px;
 
-  border-radius: 2px;
+  border-radius: 10px;
 
   background:
-    var(--boton-acento);
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--dorado),
+      transparent
+    );
 
   transform:
     translateX(-50%);
+
+  box-shadow:
+    0 0 8px
+    rgba(212, 175, 55, 0.75);
+
+  animation:
+    indicadorActivo
+    0.35s
+    ease
+    both;
 }
 
 
-// ==================================================
+// ============================================================
+// BRILLO DEL BOTÓN ACTIVO
+// ============================================================
+
+.boton.activo::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: 4px;
+
+  left: 50%;
+
+  width: 35px;
+
+  height: 35px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    rgba(212, 175, 55, 0.05);
+
+  filter:
+    blur(8px);
+
+  pointer-events: none;
+}
+
+
+// ============================================================
 // ANIMACIÓN DE ENTRADA
-// ==================================================
+// ============================================================
 
 @keyframes aparecerBotonera {
 
@@ -215,7 +497,8 @@
 
     transform:
       translateX(-50%)
-      translateY(30px);
+      translateY(45px)
+      scale(0.92);
   }
 
   to {
@@ -224,25 +507,83 @@
 
     transform:
       translateX(-50%)
-      translateY(0);
+      translateY(0)
+      scale(1);
   }
 }
 
 
-// ==================================================
+// ============================================================
+// ANIMACIÓN ICONO ACTIVO
+// ============================================================
+
+@keyframes iconoActivo {
+
+  0%,
+  100% {
+
+    filter:
+      drop-shadow(
+        0 0 5px
+        rgba(212, 175, 55, 0.35)
+      );
+  }
+
+  50% {
+
+    filter:
+      drop-shadow(
+        0 0 12px
+        rgba(212, 175, 55, 0.8)
+      );
+  }
+}
+
+
+// ============================================================
+// ANIMACIÓN INDICADOR
+// ============================================================
+
+@keyframes indicadorActivo {
+
+  from {
+
+    opacity: 0;
+
+    width: 5px;
+  }
+
+  to {
+
+    opacity: 1;
+
+    width: 24px;
+  }
+}
+
+
+// ============================================================
 // MÓVIL
-// ==================================================
+// ============================================================
 
 @media (max-width: 480px) {
 
   .botonera {
 
-    bottom: 12px;
-
     width:
-      calc(100% - 20px);
+      calc(100% - 18px);
 
-    border-radius: 20px;
+    min-height: 66px;
+
+    bottom:
+      max(
+        8px,
+        env(safe-area-inset-bottom)
+      );
+
+    padding: 5px;
+
+    border-radius: 22px;
   }
 
 
@@ -250,11 +591,18 @@
 
     min-height: 54px;
 
-    border-radius: 15px;
+    padding:
+      5px 6px;
+
+    border-radius: 17px;
   }
 
 
   .boton-icono {
+
+    width: 28px;
+
+    height: 28px;
 
     font-size: 17px;
   }
@@ -262,14 +610,72 @@
 
   .boton-texto {
 
-    font-size: 0.65rem;
+    font-size: 0.58rem;
+
+    letter-spacing: 0.06em;
   }
 }
 
 
-// ==================================================
-// REDUCIR MOVIMIENTO
-// ==================================================
+// ============================================================
+// CELULARES MUY PEQUEÑOS
+// ============================================================
+
+@media (max-width: 350px) {
+
+  .botonera {
+
+    width:
+      calc(100% - 12px);
+
+    min-height: 62px;
+
+    border-radius: 19px;
+  }
+
+
+  .boton {
+
+    min-height: 50px;
+
+    padding:
+      4px;
+  }
+
+
+  .boton-icono {
+
+    font-size: 16px;
+  }
+
+
+  .boton-texto {
+
+    font-size: 0.52rem;
+
+    letter-spacing: 0.03em;
+  }
+}
+
+
+// ============================================================
+// TABLET / ESCRITORIO
+// ============================================================
+
+@media (min-width: 600px) {
+
+  .botonera {
+
+    width: 400px;
+
+    bottom: 18px;
+  }
+}
+
+
+// ============================================================
+// ACCESIBILIDAD
+// ============================================================
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -278,8 +684,23 @@
     animation: none;
   }
 
-  .boton {
+
+  .boton,
+  .boton-icono,
+  .boton-texto {
 
     transition: none;
+  }
+
+
+  .boton.activo .boton-icono {
+
+    animation: none;
+  }
+
+
+  .boton.activo::after {
+
+    animation: none;
   }
 }

@@ -1,3 +1,4 @@
+```html
 <!-- =========================================================
      SOBRE DE ENTRADA
      ========================================================= -->
@@ -23,25 +24,84 @@
 
   <main
     class="tarjeta-pro"
+
     [attr.data-tipo]="datos().tipoEvento"
+
+    (touchstart)="iniciarSwipe($event)"
+    (touchend)="terminarSwipe($event)"
   >
 
 
     <!-- =====================================================
-         SECCIÓN INICIO
+         SECCIÓN 01 — INICIO
          ===================================================== -->
 
     @if (seccionActual() === 'inicio') {
 
-      <section class="seccion-pro seccion-inicio">
+      <section
+        class="seccion-pro seccion-inicio"
+      >
 
-        <div class="numero-seccion">
+        <!-- Número de sección -->
+
+        <div
+          class="numero-seccion"
+          aria-hidden="true"
+        >
           01
         </div>
 
-        <app-invitacion></app-invitacion>
 
-        <app-evento></app-evento>
+        <!-- Línea decorativa -->
+
+        <div
+          class="decoracion-seccion"
+          aria-hidden="true"
+        >
+
+          <span></span>
+
+          <b>✦</b>
+
+          <span></span>
+
+        </div>
+
+
+        <!-- Invitación -->
+
+        <div class="bloque-inicio bloque-invitacion">
+
+          <app-invitacion></app-invitacion>
+
+        </div>
+
+
+        <!-- Evento -->
+
+        <div class="bloque-inicio bloque-evento">
+
+          <app-evento></app-evento>
+
+        </div>
+
+
+        <!-- Indicador inferior -->
+
+        <div
+          class="indicador-deslizar"
+          aria-hidden="true"
+        >
+
+          <span>
+            DESLIZA
+          </span>
+
+          <b>
+            ↓
+          </b>
+
+        </div>
 
       </section>
 
@@ -49,24 +109,85 @@
 
 
     <!-- =====================================================
-         SECCIÓN DETALLES
+         SECCIÓN 02 — DETALLES
          ===================================================== -->
 
     @if (seccionActual() === 'detalles') {
 
-      <section class="seccion-pro seccion-detalles">
+      <section
+        class="seccion-pro seccion-detalles"
+      >
 
-        <div class="numero-seccion">
+        <!-- Número -->
+
+        <div
+          class="numero-seccion"
+          aria-hidden="true"
+        >
           02
         </div>
 
-        <app-fecha-hora
-          [mostrarContador]="true">
-        </app-fecha-hora>
 
-        <app-lugar></app-lugar>
+        <!-- Encabezado -->
 
-        <app-confirmacion></app-confirmacion>
+        <div class="encabezado-detalles">
+
+          <span class="etiqueta">
+            INFORMACIÓN
+          </span>
+
+          <h2>
+            El gran día
+          </h2>
+
+        </div>
+
+
+        <!-- Fecha -->
+
+        <div class="bloque-detalle">
+
+          <app-fecha-hora
+            [mostrarContador]="true">
+          </app-fecha-hora>
+
+        </div>
+
+
+        <!-- Lugar -->
+
+        <div class="bloque-detalle">
+
+          <app-lugar></app-lugar>
+
+        </div>
+
+
+        <!-- Confirmación -->
+
+        <div class="bloque-detalle">
+
+          <app-confirmacion></app-confirmacion>
+
+        </div>
+
+
+        <!-- Indicador -->
+
+        <div
+          class="indicador-deslizar"
+          aria-hidden="true"
+        >
+
+          <span>
+            DESLIZA
+          </span>
+
+          <b>
+            ←
+          </b>
+
+        </div>
 
       </section>
 
@@ -74,16 +195,26 @@
 
 
     <!-- =====================================================
-         SECCIÓN GALERÍA
+         SECCIÓN 03 — GALERÍA
          ===================================================== -->
 
     @if (seccionActual() === 'galeria') {
 
-      <section class="seccion-pro seccion-galeria">
+      <section
+        class="seccion-pro seccion-galeria"
+      >
 
-        <div class="numero-seccion">
+        <!-- Número -->
+
+        <div
+          class="numero-seccion"
+          aria-hidden="true"
+        >
           03
         </div>
+
+
+        <!-- Encabezado -->
 
         <div class="encabezado-seccion">
 
@@ -95,51 +226,203 @@
             Nuestra galería
           </h2>
 
+          <p>
+            Desliza para descubrir
+            nuestros momentos.
+          </p>
+
         </div>
 
 
-        <!-- ===============================================
-             GALERÍA
-             =============================================== -->
+        <!-- =================================================
+             CARRUSEL
+             ================================================= -->
 
-        <div class="galeria">
+        @if (totalFotos > 0) {
 
-          @if (datos().galeriaFotos.length > 0) {
+          <div
+            class="carrusel-galeria"
+
+            (touchstart)="
+              iniciarSwipeGaleria($event)
+            "
+
+            (touchend)="
+              terminarSwipeGaleria($event)
+            "
+          >
+
+
+            <!-- Botón anterior -->
+
+            <button
+              type="button"
+              class="control-galeria control-anterior"
+
+              (click)="fotoAnterior()"
+
+              aria-label="Fotografía anterior"
+            >
+
+              <span>
+                ‹
+              </span>
+
+            </button>
+
+
+            <!-- Fotografía -->
+
+            <div
+              class="foto-principal"
+            >
+
+              <img
+
+                [src]="fotoActualUrl"
+
+                alt="Fotografía del evento"
+
+                draggable="false"
+
+              >
+
+              <!-- Brillo -->
+
+              <div
+                class="brillo-foto"
+                aria-hidden="true"
+              ></div>
+
+            </div>
+
+
+            <!-- Botón siguiente -->
+
+            <button
+              type="button"
+              class="control-galeria control-siguiente"
+
+              (click)="siguienteFoto()"
+
+              aria-label="Siguiente fotografía"
+            >
+
+              <span>
+                ›
+              </span>
+
+            </button>
+
+
+            <!-- Contador -->
+
+            <div
+              class="contador-fotos"
+            >
+
+              <span class="actual">
+                {{ numeroFotoActual }}
+              </span>
+
+              <span class="separador">
+                /
+              </span>
+
+              <span>
+                {{ totalFotos }}
+              </span>
+
+            </div>
+
+
+          </div>
+
+
+          <!-- =================================================
+               INDICADORES
+               ================================================= -->
+
+          <div
+            class="indicadores-fotos"
+            aria-label="Seleccionar fotografía"
+          >
 
             @for (
               foto of datos().galeriaFotos;
               track $index
             ) {
 
-              <div class="foto">
+              <button
+                type="button"
 
-                <img
-                  [src]="foto"
-                  alt="Fotografía del evento"
-                >
+                class="punto-foto"
 
-              </div>
+                [class.activo]="
+                  fotoActual() === $index
+                "
+
+                (click)="
+                  seleccionarFoto($index)
+                "
+
+                [attr.aria-label]="
+                  'Ver fotografía ' + ($index + 1)
+                "
+              >
+              </button>
 
             }
 
-          } @else {
+          </div>
 
-            <div class="galeria-vacia">
 
-              <span aria-hidden="true">
-                ✦
-              </span>
+        } @else {
 
-              <p>
-                Próximamente compartiremos
-                nuestros momentos especiales.
-              </p>
 
-            </div>
+          <!-- =================================================
+               GALERÍA VACÍA
+               ================================================= -->
 
-          }
+          <div
+            class="galeria-vacia"
+          >
 
-        </div>
+            <span
+              class="icono-galeria"
+              aria-hidden="true"
+            >
+              ✦
+            </span>
+
+            <p>
+              Próximamente compartiremos
+              nuestros momentos especiales.
+            </p>
+
+          </div>
+
+        }
+
+
+        <!-- =================================================
+             TEXTO INFERIOR
+             ================================================= -->
+
+        @if (totalFotos > 0) {
+
+          <div
+            class="texto-galeria"
+          >
+
+            <span>
+              MOMENTO ESPECIAL
+            </span>
+
+          </div>
+
+        }
+
 
       </section>
 
@@ -151,7 +434,10 @@
          ===================================================== -->
 
     <app-botonera
-      (cambiarSeccion)="cambiarSeccion($event)">
+      (cambiarSeccion)="
+        cambiarSeccion($event)
+      "
+    >
     </app-botonera>
 
 
